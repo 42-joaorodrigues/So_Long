@@ -84,9 +84,9 @@ Map Characters:
 
 ### Bonus Features Implemented
 
-✅ **Sprite Animation** - Dynamic animated sprites for enhanced visual appeal\n
-✅ **On-screen Movement Counter** - Real-time display instead of shell output\n
-❌ **Enemy Patrols** - Not implemented (would add lose condition on contact)
+- ✅ **Sprite Animation** - Dynamic animated sprites for enhanced visual appeal
+- ✅ **On-screen Movement Counter** - Real-time display instead of shell output
+- ❌ **Enemy Patrols** - Not implemented (would add lose condition on contact)
 
 ## Usage
 
