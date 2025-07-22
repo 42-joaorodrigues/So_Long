@@ -5,10 +5,6 @@
 ![Status Badge](https://img.shields.io/badge/Status-Completed-success)
 ![Score Badge](https://img.shields.io/badge/Score-120%2F100-gold)
 
-## Project Details
-
-For full project requirements, see the [Subject File](./subject.md).
-
 ## What I Learned
 
 Through this 2D game development project at 42 School, I developed key graphics programming and game development skills:
