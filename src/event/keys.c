@@ -6,18 +6,20 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:14:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:22:31 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/25 17:25:34 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exit.h"
 #include "event.h"
+#include "lft_print.h"
 #include <stdlib.h>
 
 int	ft_handle_keys(const int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
+		ft_printf("Moves: %d\n", game->n_moves);
 		ft_free_exit(game, EXIT_SUCCESS);
 	}
 	if (keycode == KEY_W || keycode == KEY_UP)
@@ -33,6 +35,7 @@ int	ft_handle_keys(const int keycode, t_game *game)
 
 int	ft_press_x(t_game *game)
 {
+	ft_printf("Moves: %d\n", game->n_moves);
 	ft_free_exit(game, EXIT_SUCCESS);
 	return (0);
 }

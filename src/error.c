@@ -6,16 +6,16 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:01:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:14:53 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/25 10:26:46 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exit.h"
-#include "graphic/graphic.h"
-#include "lib_memory.h"
-#include "lib_string.h"
+#include "graphic.h"
+#include "lft_memory.h"
+#include "lft_string.h"
 #include "mlx.h"
-#include <lib_print.h>
+#include "lft_print.h"
 #include <unistd.h>
 
 static void	ft_puterr(const char *error)
@@ -83,7 +83,7 @@ static void	ft_free_sprites(t_game *game, void **sprite_ptr, int n_sprites)
 
 void	ft_free_exit(t_game *game, const int err_code)
 {
-	ft_free_matrix((void **)game->map.map, game->map.height - 1);
+	ft_free_partial_matrix((void **)game->map.map, game->map.height - 1);
 	ft_free_sprites(game, game->sprites, game->n_sprites);
 	ft_free_sprites(game, game->counter_sprites, game->n_counter_sprites);
 	if (game->win)

@@ -7,7 +7,7 @@
 
 NAME   		= so_long
 CC     		= cc
-CFLAGS 		= -Wall -Werror -Wextra
+CFLAGS 		= -Wall -Werror -Wextra -Wno-incompatible-pointer-types
 LIBS_DIR	= libs
 O_DIR		= obj
 

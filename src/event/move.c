@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:16:35 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/25 17:25:55 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_move(t_game *game, const t_point *new_pos,
 	game->player.x = new_pos->x;
 	game->player.y = new_pos->y;
 	game->n_moves++;
-	ft_printf("Moves: %d\n", game->n_moves);
+	ft_printf("Moves: %d\r", game->n_moves);
 }
 
 static void	ft_update_player_sprite(t_game *game, const int x_offset,
@@ -72,7 +72,7 @@ void	ft_update_player_pos(t_game *game, int x_offset, int y_offset)
 	else if (game->map.map[new_pos.y][new_pos.x] == 'E'
 		&& game->map.n_collectibles == 0)
 	{
-		ft_printf("Congratulations, you've won!\n");
+		ft_printf("Moves: %d\nCongratulations, you've won!\n", game->n_moves);
 		ft_free_exit(game, E_OK);
 	}
 }
