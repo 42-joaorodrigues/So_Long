@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 15:25:48 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 16:11:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ static void	ft_load_sprites(t_game *game)
 		"assets/player_down0.xpm", "assets/player_down1.xpm",
 		"assets/player_down2.xpm", "assets/player_chest.xpm",
 		"assets/chest0.xpm", "assets/chest1.xpm",
-		"assets/element/wall_v_top.xpm", "assets/element/wall_v.xpm",
-		"assets/element/wall_h_top.xpm", "assets/element/wall_h.xpm",
-		"assets/element/floor.xpm", "assets/element/map_exit.xpm"});
+		"assets/void.xpm",
+		"assets/wall_v_top.xpm", "assets/wall_v.xpm",
+		"assets/wall_h_top.xpm", "assets/wall_h.xpm",
+		"assets/floor.xpm", "assets/map_exit.xpm"});
 	i = -1;
 	while (++i < N_SPRITES)
 		if (!game->sprites[i])
@@ -107,6 +108,7 @@ void	ft_render_map(t_game *game)
 	ft_load_sprites(game);
 	game->n_sprites = N_SPRITES;
 	ft_mark_void_walls(game);
+	game->map.map[game->player.y][game->player.x] = '0'; 
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -144,6 +146,8 @@ void	ft_render_map(t_game *game)
 				ft_put_image(game, game->sprites[CHEST0], x, y);
 			else if (game->map.map[y][x] == 'E')
 				ft_put_image(game, game->sprites[MAP_EXIT], x, y);
+			if (game->player.x == x && game->player.y == y)
+				ft_put_image(game, game->sprites[PLAYER_DOWN1], x, y);
 			x++;
 		}
 		y++;

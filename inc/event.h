@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:10:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:24:37 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 16:12:04 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int		ft_press_x(t_game *game);
 
 // move
 void	ft_update_player_pos(t_game *game, int x_offset, int y_offset);
+// void	init_animation(t_game *game);
 
 #endif // EVENT_H

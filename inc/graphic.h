@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 15:18:28 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 15:40:26 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ enum					e_sprites
 	PLAYER_DOWN0,
 	PLAYER_DOWN1,
 	PLAYER_DOWN2,
-	PLAYER_CHEST0,
-	PLAYER_CHEST1,
+	PLAYER_CHEST,
 	CHEST0,
 	CHEST1,
 	VOID,

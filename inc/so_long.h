@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:15:29 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 16:08:23 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_game
 	int			n_counter_sprites;
 	void		*mlx;
 	void		*win;
+	int         player_direction; // 0=up, 1=left, 2=right, 3=down
+	int         step;
 }				t_game;
 
 // parser

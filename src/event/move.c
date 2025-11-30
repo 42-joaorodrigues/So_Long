@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 15:27:32 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 16:11:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,126 @@
 #include "mlx.h"
 #include "lft_print.h"
 
-static void	ft_move(t_game *game, const t_point *new_pos,
-	const t_point *old_pos)
+/*
+** Get the correct sprite index based on direction and step
+*/
+static int	get_player_sprite(int direction, int step)
 {
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->sprites[PLAYER_UP1],
-		new_pos->x * TILE_SIZE, new_pos->y * TILE_SIZE);
-	game->map.map[new_pos->y][new_pos->x] = 'P';
+	int	frame;
+
+	// Alternate between frame 0 and frame 2
+	frame = (step == 0) ? 0 : 2;
+	
+	if (direction == 0)  // Up
+		return (PLAYER_UP0 + frame);
+	else if (direction == 1)  // Left
+		return (PLAYER_LEFT0 + frame);
+	else if (direction == 2)  // Right
+		return (PLAYER_RIGHT0 + frame);
+	else  // Down
+		return (PLAYER_DOWN0 + frame);
+}
+
+/*
+** Render a tile at position (considers what's on map + player)
+*/
+static void	render_tile(t_game *game, int x, int y)
+{
+	char	tile;
+
+	// Always render floor first
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites[FLOOR],
-		old_pos->x * TILE_SIZE, old_pos->y * TILE_SIZE);
-	game->map.map[old_pos->y][old_pos->x] = '0';
+		x * TILE_SIZE, y * TILE_SIZE);
+	
+	tile = game->map.map[y][x];
+	
+	// Render map content
+	if (tile == 'C')
+		mlx_put_image_to_window(game->mlx, game->win, game->sprites[CHEST0],
+			x * TILE_SIZE, y * TILE_SIZE);
+	else if (tile == 'O')
+		mlx_put_image_to_window(game->mlx, game->win, game->sprites[CHEST1],
+			x * TILE_SIZE, y * TILE_SIZE);
+	else if (tile == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, game->sprites[MAP_EXIT],
+			x * TILE_SIZE, y * TILE_SIZE);
+	
+	// Render player on top if at this position
+	if (game->player.x == x && game->player.y == y)
+	{
+		if (tile == 'C' || tile == 'O')
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->sprites[PLAYER_CHEST], x * TILE_SIZE, y * TILE_SIZE);
+		else
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->sprites[get_player_sprite(game->player_direction, game->step)],
+				x * TILE_SIZE, y * TILE_SIZE);
+	}
+}
+
+static void	ft_move(t_game *game, const t_point *new_pos,
+	const t_point *old_pos, int direction)
+{
+	// Update direction and step
+	game->player_direction = direction;
+	game->step = !game->step;
+	
+	// Update player position
 	game->player.x = new_pos->x;
 	game->player.y = new_pos->y;
 	game->n_moves++;
+	
+	// Redraw old tile (without player)
+	render_tile(game, old_pos->x, old_pos->y);
+	
+	// Redraw new tile (with player)
+	render_tile(game, new_pos->x, new_pos->y);
+	
 	ft_printf("Moves: %d\r", game->n_moves);
 }
 
 void	ft_update_player_pos(t_game *game, int x_offset, int y_offset)
 {
 	t_point	new_pos;
+	int		direction;
 
 	new_pos.x = game->player.x + x_offset;
 	new_pos.y = game->player.y + y_offset;
+	
+	// Determine direction
+	if (y_offset < 0)
+		direction = 0;  // Up
+	else if (x_offset < 0)
+		direction = 1;  // Left
+	else if (x_offset > 0)
+		direction = 2;  // Right
+	else
+		direction = 3;  // Down
+	
 	if (new_pos.x < 0 || new_pos.x >= game->map.width || new_pos.y < 0
 		|| new_pos.y >= game->map.height)
 		return ;
-	if (game->map.map[new_pos.y][new_pos.x] == '0')
-		ft_move(game, &new_pos, &(t_point){game->player.x, game->player.y});
-	else if (game->map.map[new_pos.y][new_pos.x] == 'C')
+	
+	// Check what's at new position
+	if (game->map.map[new_pos.y][new_pos.x] == '1')
+		return ;  // Wall
+	
+	if (game->map.map[new_pos.y][new_pos.x] == 'E'
+		&& game->map.n_collectibles > 0)
+		return ;  // Exit but not all collected
+	
+	// Collect chest if present
+	if (game->map.map[new_pos.y][new_pos.x] == 'C')
 	{
-		ft_move(game, &new_pos, &(t_point){game->player.x, game->player.y});
+		game->map.map[new_pos.y][new_pos.x] = 'O';  // Mark as opened
 		game->map.n_collectibles--;
 	}
-	else if (game->map.map[new_pos.y][new_pos.x] == 'E'
+	
+	// Move player
+	ft_move(game, &new_pos, &(t_point){game->player.x, game->player.y}, direction);
+	
+	// Check win condition
+	if (game->map.map[new_pos.y][new_pos.x] == 'E'
 		&& game->map.n_collectibles == 0)
 	{
 		ft_printf("Moves: %d\nCongratulations, you've won!\n", game->n_moves);
