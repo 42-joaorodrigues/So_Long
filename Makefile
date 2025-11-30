@@ -142,7 +142,6 @@ clean:
 fclean:
 	@rm -rf $(O_DIR)
 	@rm -rf $(NAME)
-	@rm -rf $(LIBS_DIR)
 	@make .progress ACTION="Cleaning" OBJECT="$(NAME)" --no-print-directory
 
 re: fclean all

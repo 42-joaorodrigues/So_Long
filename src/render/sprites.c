@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:16:18 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 15:25:48 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,61 @@ static void	ft_load_sprites(t_game *game)
 {
 	int	i;
 
-	ft_load_sprites2(game, (char *[]){"assets/face/face_up.xpm",
-		"assets/face/face_left.xpm", "assets/face/face_down.xpm",
-		"assets/face/face_right.xpm", "assets/element/norminette.xpm",
-		"assets/element/white.xpm", "assets/element/pass.xpm",
-		"assets/element/42.xpm", "assets/element/job.xpm"});
+	ft_load_sprites2(game, (char *[]){"assets/player_up0.xpm",
+		"assets/player_up1.xpm", "assets/player_up2.xpm",
+		"assets/player_left0.xpm", "assets/player_left1.xpm",
+		"assets/player_left2.xpm", "assets/player_right0.xpm",
+		"assets/player_right1.xpm", "assets/player_right2.xpm",
+		"assets/player_down0.xpm", "assets/player_down1.xpm",
+		"assets/player_down2.xpm", "assets/player_chest.xpm",
+		"assets/chest0.xpm", "assets/chest1.xpm",
+		"assets/element/wall_v_top.xpm", "assets/element/wall_v.xpm",
+		"assets/element/wall_h_top.xpm", "assets/element/wall_h.xpm",
+		"assets/element/floor.xpm", "assets/element/map_exit.xpm"});
 	i = -1;
 	while (++i < N_SPRITES)
 		if (!game->sprites[i])
 			ft_free_exit(game, E_SPRITES_MISSING);
+}
+
+static void	ft_mark_void_walls(t_game *game)
+{
+	int		y;
+	int		x;
+	char	up;
+	char	down;
+	char	left;
+	char	right;
+	char	up_left;
+	char	up_right;
+	char	down_left;
+	char	down_right;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			if (game->map.map[y][x] == '1')
+			{
+				up = (y > 0) ? game->map.map[y - 1][x] : '1';
+				down = (y < game->map.height - 1) ? game->map.map[y + 1][x] : '1';
+				left = (x > 0) ? game->map.map[y][x - 1] : '1';
+				right = (x < game->map.width - 1) ? game->map.map[y][x + 1] : '1';
+				up_left = (y > 0 && x > 0) ? game->map.map[y - 1][x - 1] : '1';
+				up_right = (y > 0 && x < game->map.width - 1) ? game->map.map[y - 1][x + 1] : '1';
+				down_left = (y < game->map.height - 1 && x > 0) ? game->map.map[y + 1][x - 1] : '1';
+				down_right = (y < game->map.height - 1 && x < game->map.width - 1) ? game->map.map[y + 1][x + 1] : '1';
+				if ((up == '1' || up == '2') && (down == '1' || down == '2') && (left == '1' || left == '2') && (right == '1' || right == '2')
+					&& (up_left == '1' || up_left == '2') && (up_right == '1' || up_right == '2')
+					&& (down_left == '1' || down_left == '2') && (down_right == '1' || down_right == '2'))
+					game->map.map[y][x] = '2';
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 static void	ft_put_image(t_game *game, void *image_ptr, int x, int y)
@@ -60,6 +106,7 @@ void	ft_render_map(t_game *game)
 
 	ft_load_sprites(game);
 	game->n_sprites = N_SPRITES;
+	ft_mark_void_walls(game);
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -69,13 +116,34 @@ void	ft_render_map(t_game *game)
 			if (game->map.map[y][x] == '0')
 				ft_put_image(game, game->sprites[FLOOR], x, y);
 			else if (game->map.map[y][x] == '1')
-				ft_put_image(game, game->sprites[WALL], x, y);
+			{
+				char up    = (y > 0) ? game->map.map[y - 1][x] : '2';
+				char down  = (y < game->map.height - 1) ? game->map.map[y + 1][x] : '2';
+
+				// 4 → Vertical top
+				if (up != '1' && down == '1')
+					ft_put_image(game, game->sprites[WALL_V_TOP], x, y);
+
+				// 3 → Vertical no top
+				else if ((up == '1' || up == '2') && down == '1')
+					ft_put_image(game, game->sprites[WALL_V], x, y);
+
+				// 6 → Horizontal top
+				else if (up != '1')
+					ft_put_image(game, game->sprites[WALL_H_TOP], x, y);
+
+				// 5 → Horizontal no top
+				else
+					ft_put_image(game, game->sprites[WALL_H], x, y);
+			}
+			else if (game->map.map[y][x] == '2')
+				ft_put_image(game, game->sprites[VOID], x, y);
 			else if (game->map.map[y][x] == 'P')
-				ft_put_image(game, game->sprites[PLAYER_UP], x, y);
+				ft_put_image(game, game->sprites[PLAYER_UP1], x, y);
 			else if (game->map.map[y][x] == 'C')
-				ft_put_image(game, game->sprites[COLLECTIBLE], x, y);
+				ft_put_image(game, game->sprites[CHEST0], x, y);
 			else if (game->map.map[y][x] == 'E')
-				ft_put_image(game, game->sprites[MAP_EXIT_CLOSED], x, y);
+				ft_put_image(game, game->sprites[MAP_EXIT], x, y);
 			x++;
 		}
 		y++;

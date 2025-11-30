@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 17:25:55 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 15:27:32 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_move(t_game *game, const t_point *new_pos,
 	const t_point *old_pos)
 {
 	mlx_put_image_to_window(game->mlx, game->win,
-		game->sprites[game->player.sprite],
+		game->sprites[PLAYER_UP1],
 		new_pos->x * TILE_SIZE, new_pos->y * TILE_SIZE);
 	game->map.map[new_pos->y][new_pos->x] = 'P';
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites[FLOOR],
@@ -32,22 +32,6 @@ static void	ft_move(t_game *game, const t_point *new_pos,
 	ft_printf("Moves: %d\r", game->n_moves);
 }
 
-static void	ft_update_player_sprite(t_game *game, const int x_offset,
-		const int y_offset)
-{
-	if (x_offset == 0 && y_offset == -1)
-		game->player.sprite = PLAYER_UP;
-	else if (x_offset == -1 && y_offset == 0)
-		game->player.sprite = PLAYER_LEFT;
-	else if (x_offset == 0 && y_offset == 1)
-		game->player.sprite = PLAYER_DOWN;
-	else if (x_offset == 1 && y_offset == 0)
-		game->player.sprite = PLAYER_RIGHT;
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->sprites[game->player.sprite], game->player.x * TILE_SIZE,
-		game->player.y * TILE_SIZE);
-}
-
 void	ft_update_player_pos(t_game *game, int x_offset, int y_offset)
 {
 	t_point	new_pos;
@@ -57,17 +41,12 @@ void	ft_update_player_pos(t_game *game, int x_offset, int y_offset)
 	if (new_pos.x < 0 || new_pos.x >= game->map.width || new_pos.y < 0
 		|| new_pos.y >= game->map.height)
 		return ;
-	ft_update_player_sprite(game, x_offset, y_offset);
 	if (game->map.map[new_pos.y][new_pos.x] == '0')
 		ft_move(game, &new_pos, &(t_point){game->player.x, game->player.y});
 	else if (game->map.map[new_pos.y][new_pos.x] == 'C')
 	{
 		ft_move(game, &new_pos, &(t_point){game->player.x, game->player.y});
 		game->map.n_collectibles--;
-		if (game->map.n_collectibles == 0)
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->sprites[MAP_EXIT_OPEN], game->map.exit_x * TILE_SIZE,
-				game->map.exit_y * TILE_SIZE);
 	}
 	else if (game->map.map[new_pos.y][new_pos.x] == 'E'
 		&& game->map.n_collectibles == 0)

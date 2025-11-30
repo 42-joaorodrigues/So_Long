@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:19:05 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 14:33:00 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int	ft_flood_fill(char **map, int x, int y, t_flood_fill *flood_fill)
 {
-	if (x < 0 || y < 0 || !map[y] || map[y][x] == '1' || map[y][x] == '\0')
+	if (x < 0 || y < 0 || !map[y] || map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '\0')
 		return (0);
 	if (map[y][x] == 'C')
 		flood_fill->collectibles--;
@@ -43,7 +43,7 @@ static void	handle_character(const char c, const int x, const int y,
 		t_game *game)
 {
 	if ((x <= 0 || x >= game->map.width - 1 || y <= 0 || y >= game->map.height
-			- 1) && c != '1')
+			- 1) && c != '1' && c != '2')
 		ft_free_exit(game, E_MAP_NOT_SURROUNDED);
 	if (c == 'P')
 	{
@@ -63,7 +63,7 @@ static void	handle_character(const char c, const int x, const int y,
 		if (game->map.n_exits > 1)
 			ft_free_exit(game, E_MULTIPLE_EXITS);
 	}
-	else if (c != '0' && c != '1')
+	else if (c != '0' && c != '1' && c != '2')
 		ft_free_exit(game, E_INVALID_CHARACTER);
 }
 

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:15:25 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 15:18:28 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,29 @@
 
 enum					e_sprites
 {
-	PLAYER_UP,
-	PLAYER_LEFT,
-	PLAYER_DOWN,
-	PLAYER_RIGHT,
-	WALL,
+	PLAYER_UP0,
+	PLAYER_UP1,
+	PLAYER_UP2,
+	PLAYER_LEFT0,
+	PLAYER_LEFT1,
+	PLAYER_LEFT2,
+	PLAYER_RIGHT0,
+	PLAYER_RIGHT1,
+	PLAYER_RIGHT2,
+	PLAYER_DOWN0,
+	PLAYER_DOWN1,
+	PLAYER_DOWN2,
+	PLAYER_CHEST0,
+	PLAYER_CHEST1,
+	CHEST0,
+	CHEST1,
+	VOID,
+	WALL_V_TOP,
+	WALL_V,
+	WALL_H_TOP,
+	WALL_H,
 	FLOOR,
-	COLLECTIBLE,
-	MAP_EXIT_CLOSED,
-	MAP_EXIT_OPEN,
+	MAP_EXIT,
 	N_SPRITES
 };
 
