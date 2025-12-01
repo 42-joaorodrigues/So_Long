@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:14:12 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:13:54 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:56:29 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_init_map(t_game *game)
 {
-	game->map.n_collectibles = 0;
+	game->map.collectible_count = 0;
 	game->map.n_exits = 0;
 	game->map.n_players = 0;
 	game->sprites = NULL;

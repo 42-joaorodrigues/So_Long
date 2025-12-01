@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:01:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:26:46 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:13:17 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exit.h"
-#include "graphic.h"
+#include "so_long.h"
 #include "lft_memory.h"
 #include "lft_string.h"
 #include "mlx.h"
@@ -21,9 +21,7 @@
 static void	ft_puterr(const char *error)
 {
 	write(1, "Error\n", 6);
-//	write(2, PINK, ft_strlen(PINK));
 	write(1, error, ft_strlen(error));
-//	write(2, PINK, ft_strlen(RESET));
 }
 
 static void	ft_print_error2(const int err_code)
@@ -83,9 +81,8 @@ static void	ft_free_sprites(t_game *game, void **sprite_ptr, int n_sprites)
 
 void	ft_free_exit(t_game *game, const int err_code)
 {
-	ft_free_partial_matrix((void **)game->map.map, game->map.height - 1);
-	ft_free_sprites(game, game->sprites, game->n_sprites);
-	ft_free_sprites(game, game->counter_sprites, game->n_counter_sprites);
+	ft_free_partial_matrix((void **)game->map.array, game->map.height - 1);
+	ft_free_sprites(game, game->sprites, N_SPRITES);
 	if (game->win)
 	{
 		mlx_destroy_window(game->mlx, game->win);

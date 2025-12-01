@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:36:39 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:18:31 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:50:44 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	load_map(t_list *map_list, t_map *map)
 	map->width = 0;
 	if (map_list)
 		map->width = (int)ft_strlen(map_list->content);
-	map->map = (char **)malloc((map->width + 1) * sizeof(char *));
-	if (!map->map)
+	map->array = (char **)malloc((map->width + 1) * sizeof(char *));
+	if (!map->array)
 	{
 		ft_lstclear(&map_list, free);
 		exit(ft_print_error(E_MEMORY_ALLOC));
@@ -38,10 +38,10 @@ static void	load_map(t_list *map_list, t_map *map)
 	i = 0;
 	while (current)
 	{
-		map->map[i++] = current->content;
+		map->array[i++] = current->content;
 		current = current->next;
 	}
-	map->map[i] = NULL;
+	map->array[i] = NULL;
 	ft_lstclear(&map_list, NULL);
 }
 

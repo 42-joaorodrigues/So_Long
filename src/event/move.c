@@ -6,13 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 16:11:33 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:04:45 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exit.h"
 #include "event.h"
-#include "graphic.h"
 #include "mlx.h"
 #include "lft_print.h"
 
@@ -47,7 +46,7 @@ static void	render_tile(t_game *game, int x, int y)
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites[FLOOR],
 		x * TILE_SIZE, y * TILE_SIZE);
 	
-	tile = game->map.map[y][x];
+	tile = game->map.array[y][x];
 	
 	// Render map content
 	if (tile == 'C')
@@ -83,7 +82,7 @@ static void	ft_move(t_game *game, const t_point *new_pos,
 	// Update player position
 	game->player.x = new_pos->x;
 	game->player.y = new_pos->y;
-	game->n_moves++;
+	game->move_count++;
 	
 	// Redraw old tile (without player)
 	render_tile(game, old_pos->x, old_pos->y);
@@ -91,7 +90,7 @@ static void	ft_move(t_game *game, const t_point *new_pos,
 	// Redraw new tile (with player)
 	render_tile(game, new_pos->x, new_pos->y);
 	
-	ft_printf("Moves: %d\r", game->n_moves);
+	ft_printf("Moves: %d\r", game->move_count);
 }
 
 void	ft_update_player_pos(t_game *game, int x_offset, int y_offset)
@@ -117,28 +116,28 @@ void	ft_update_player_pos(t_game *game, int x_offset, int y_offset)
 		return ;
 	
 	// Check what's at new position
-	if (game->map.map[new_pos.y][new_pos.x] == '1')
+	if (game->map.array[new_pos.y][new_pos.x] == '1')
 		return ;  // Wall
 	
-	if (game->map.map[new_pos.y][new_pos.x] == 'E'
-		&& game->map.n_collectibles > 0)
+	if (game->map.array[new_pos.y][new_pos.x] == 'E'
+		&& game->map.collectible_count > 0)
 		return ;  // Exit but not all collected
 	
 	// Collect chest if present
-	if (game->map.map[new_pos.y][new_pos.x] == 'C')
+	if (game->map.array[new_pos.y][new_pos.x] == 'C')
 	{
-		game->map.map[new_pos.y][new_pos.x] = 'O';  // Mark as opened
-		game->map.n_collectibles--;
+		game->map.array[new_pos.y][new_pos.x] = 'O';  // Mark as opened
+		game->map.collectible_count--;
 	}
 	
 	// Move player
 	ft_move(game, &new_pos, &(t_point){game->player.x, game->player.y}, direction);
 	
 	// Check win condition
-	if (game->map.map[new_pos.y][new_pos.x] == 'E'
-		&& game->map.n_collectibles == 0)
+	if (game->map.array[new_pos.y][new_pos.x] == 'E'
+		&& game->map.collectible_count == 0)
 	{
-		ft_printf("Moves: %d\nCongratulations, you've won!\n", game->n_moves);
+		ft_printf("Moves: %d\nCongratulations, you've won!\n", game->move_count);
 		ft_free_exit(game, E_OK);
 	}
 }

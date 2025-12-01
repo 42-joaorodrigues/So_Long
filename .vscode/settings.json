@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"mlx.h": "c",
+		"sprites.h": "c",
+		"lft_print.h": "c",
+		"stdlib.h": "c"
+	}
+}

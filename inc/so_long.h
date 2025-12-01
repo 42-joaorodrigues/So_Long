@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 16:31:52 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:06:40 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 # define TILE_SIZE 64
 
+# include "sprites.h"
+# include "key_codes.h"
+
 typedef struct s_map
 {
-	char		**map;
+	char		**array;
 	int			width;
 	int			height;
 	int			exit_x;
 	int			exit_y;
-	int			n_collectibles;
+	int			collectible_count;
 	int			n_players;
 	int			n_exits;
 }				t_map;
@@ -48,11 +51,9 @@ typedef struct s_game
 {
 	t_map		map;
 	t_player	player;
-	int			n_moves;
+	int			move_count;
 	void		**sprites;
 	int			n_sprites;
-	void		**counter_sprites;
-	int			n_counter_sprites;
 	void		*mlx;
 	void		*win;
 	int         player_direction; // 0=up, 1=left, 2=right, 3=down

@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_codes.h                                      :+:      :+:    :+:   */
+/*   exit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.42luxembourg.>  +#+  +:+       +#+        */
+/*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:07:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/01/21 14:40:01 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:12:53 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_CODES_H
-# define ERROR_CODES_H
-
-//# define PINK "\033[38;2;231;133;190m"
-//# define RESET "\033[0m"
-
-# define PINK ""
-# define RESET ""
+#ifndef EXIT_H
+# define EXIT_H
 
 typedef struct s_game	t_game;
 
@@ -44,4 +38,4 @@ enum					e_error
 int						ft_print_error(int err_code);
 void					ft_free_exit(t_game *game, int err_code);
 
-#endif // ERROR_CODES_H
+#endif // EXIT_H

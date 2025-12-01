@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic.h                                          :+:      :+:    :+:   */
+/*   sprites.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 15:40:26 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:05:57 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHIC_H
-# define GRAPHIC_H
-
-#include "so_long.h"
+#ifndef SPRITES_H
+# define SPRITES_H
 
 enum					e_sprites
 {
@@ -42,10 +40,4 @@ enum					e_sprites
 	N_SPRITES
 };
 
-// window
-void					ft_window(t_game *game);
-
-// sprites
-void					ft_render_map(t_game *game);
-
-#endif // GRAPHIC_H
+#endif // SPRITES_H

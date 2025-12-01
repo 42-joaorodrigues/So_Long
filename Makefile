@@ -151,14 +151,13 @@ re: fclean all
 $(HEADER):
 	@mkdir -p $(dir $@)
 	@touch $@
-	@printf "$(PINK)\n"
+	@printf "\n"
 	@printf "█████████████████████████████\n"
 	@printf "        ██  █▓███  ██  █▓███ \n"
 	@printf "joao-alm  █████      █████   \n"
-	@printf "$(YELLOW)"
 	@printf "╔═╗┌─┐  ╦  ┌─┐┌┐┌┌─┐\n"
 	@printf "╚═╗│ │  ║  │ │││││ ┬\n"
-	@printf "╚═╝└─┘  ╩═╝└─┘┘└┘└─┘$(RESET)\n\n"
+	@printf "╚═╝└─┘  ╩═╝└─┘┘└┘└─┘\n\n"
 
 BAR_SIZE ?= 10
 
@@ -178,10 +177,10 @@ BAR_SIZE ?= 10
 	make .success ACTION=$(ACTION) OBJECT=$(OBJECT) --no-print-directory
 
 .success:
-	@printf "%-12.12s %-10.10s $(GREEN)" $(ACTION) $(OBJECT); \
+	@printf "%-12.12s %-10.10s " $(ACTION) $(OBJECT); \
 	bar_size=$(BAR_SIZE); \
 	for j in $$(seq 1 $$bar_size); do printf "⣿"; done; \
-	printf " 100%%$(RESET)\n"
+	printf " 100%%\n"
 
 #────────────────────────────────Phony Targets───────────────────────────────#
 

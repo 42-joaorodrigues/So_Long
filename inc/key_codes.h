@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.h                                            :+:      :+:    :+:   */
+/*   key_codes.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 17:10:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 16:31:07 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/11/30 19:06:52 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENT_H
-# define EVENT_H
-
-# include "so_long.h"
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}		t_point;
+#ifndef KEY_CODES_H
+# define KEY_CODES_H
 
 enum	e_keycodes
 {
@@ -34,12 +26,4 @@ enum	e_keycodes
 	KEY_RIGHT = 65363
 };
 
-// keys
-int		ft_handle_keys(int keycode, t_game *game);
-int		ft_press_x(t_game *game);
-
-// move
-void	ft_update_player_pos(t_game *game, int x_offset, int y_offset);
-// void	init_animation(t_game *game);
-
-#endif // EVENT_H
+#endif // KEY_CODES_H
