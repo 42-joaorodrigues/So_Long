@@ -1,23 +1,20 @@
-nvidia_drm            159744  0
-nvidia_modeset       1929216  1 nvidia_drm
-nvidia_uvm           4059136  0
-nvidia              111558656  3 nvidia_uvm,nvidia_drm,nvidia_modeset
-drm_ttm_helper         16384  1 nvidia_drm
-video                  81920  4 asus_wmi,asus_nb_wmi,i915,nvidia_modeset
-akmod-nvidia-580.105.08-1.fc43.x86_64
-kmod-nvidia-6.17.8-300.fc43.x86_64-580.105.08-1.fc43.x86_64
-● akmods.service - Builds and install new kmods from akmod packages
-     Loaded: loaded (/usr/lib/systemd/system/akmods.service; enabled; preset: enabled)
+× gdm.service - GNOME Display Manager
+     Loaded: loaded (/usr/lib/systemd/system/gdm.service; enabled; preset: enabled)
     Drop-In: /usr/lib/systemd/system/service.d
              └─10-timeout-abort.conf
-     Active: active (exited) since Mon 2025-12-01 14:57:52 CET; 6min ago
- Invocation: 7d253ef9be98470db686b3439668aaa6
-    Process: 794 ExecStart=/usr/sbin/akmods --from-init (code=exited, status=0/SUCCESS)
-   Main PID: 794 (code=exited, status=0/SUCCESS)
-   Mem peak: 72.3M
-        CPU: 216ms
+     Active: failed (Result: core-dump) since Mon 2025-12-01 16:03:16 CET; 6min ago
+   Duration: 386ms
+ Invocation: fb471848ea974b958f8cd61dc1493c8e
+    Process: 1775 ExecStart=/usr/bin/gdm (code=dumped, signal=TRAP)
+   Main PID: 1775 (code=dumped, signal=TRAP)
+   Mem peak: 4.6M
+        CPU: 71ms
 
-Dec 01 14:57:51 fedora systemd[1]: Starting akmods.service - Builds and install new kmods from akmod packages...
-Dec 01 14:57:52 fedora akmods[794]: Checking kmods exist for 6.17.8-300.fc43.x86_64[  OK  ]
-Dec 01 14:57:52 fedora systemd[1]: Finished akmods.service - Builds and install new kmods from akmod packages.
-nvidia
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Main process exited, code=dumped, status=5/TRAP
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Failed with result 'core-dump'.
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Triggering OnFailure= dependencies.
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Scheduled restart job, restart counter is at 5.
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Start request repeated too quickly.
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Failed with result 'core-dump'.
+Dec 01 16:03:16 fedora systemd[1]: Failed to start gdm.service - GNOME Display Manager.
+Dec 01 16:03:16 fedora systemd[1]: gdm.service: Triggering OnFailure= dependencies.
