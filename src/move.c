@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 11:09:16 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 19:03:34 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	move(t_game *game, int new_x, int new_y)
 	render_tile(game, old_x, old_y);
 	render_tile(game, new_x, new_y);
 	render_player(game, new_x, new_y, step ? 2 : 0);
-	ft_printf("Moves: %d\r", game->move_count);
+	ft_printf("\r\033[KMoves: %d", game->move_count);
 }
 
 static void	animate_walk_in_place(t_game *game)
@@ -96,7 +96,6 @@ void	update_player(t_game *game, int direction)
 	int	new_y;
 
 	game->player.direction = direction;
-	game->last_input_time = get_time_ms();
 	game->player.last_move = get_time_ms();
 	get_new_pos(game, direction, &new_x, &new_y);
 	if (new_x < 0 || new_x >= game->map.width || new_y < 0

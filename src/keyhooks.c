@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:14:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 11:10:03 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 19:05:01 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,27 @@ int	keyhook(t_game *game)
 	if (current_time - game->last_input_time >= 150)
 	{
 		if (game->key_w || game->key_up)
+		{
+			game->last_input_time = current_time;
 			update_player(game, UP);
+		}
 		else if (game->key_a || game->key_left)
+		{
+			game->last_input_time = current_time;
 			update_player(game, LEFT);
+		}
 		else if (game->key_d || game->key_right)
+		{
+			game->last_input_time = current_time;
 			update_player(game, RIGHT);
+		}
 		else if (game->key_s || game->key_down)
+		{
+			game->last_input_time = current_time;
 			update_player(game, DOWN);
+		}
 	}
-	if (current_time - game->player.last_move > 200)
+	if (current_time - game->player.last_move > 150)
 		render_player(game, game->player.x, game->player.y, 1);
 	return (0);
 }
