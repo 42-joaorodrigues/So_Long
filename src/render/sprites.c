@@ -6,11 +6,10 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 19:07:46 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 09:20:50 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit.h"
 #include "so_long.h"
 #include "mlx.h"
 #include <stdlib.h>

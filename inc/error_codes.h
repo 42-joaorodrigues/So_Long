@@ -6,16 +6,14 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:07:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 19:12:53 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 08:07:24 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXIT_H
-# define EXIT_H
+#ifndef ERROR_CODES_H
+# define ERROR_CODES_H
 
-typedef struct s_game	t_game;
-
-enum					e_error
+enum	e_error_codes
 {
 	E_OK = 0,
 	E_MEMORY_ALLOC = 12,
@@ -35,7 +33,4 @@ enum					e_error
 	E_OBSTRUCTED_PATH = 208
 };
 
-int						ft_print_error(int err_code);
-void					ft_free_exit(t_game *game, int err_code);
-
-#endif // EXIT_H
+#endif // ERROR_CODES_H

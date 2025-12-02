@@ -6,12 +6,13 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:14:42 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 11:01:10 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit.h"
 #include "so_long.h"
+#include <mlx.h>
+#include <stdlib.h>
 
 int	main(int ac, char **av)
 {
@@ -20,6 +21,14 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (ft_print_error(E_INVALID_FORMAT));
 	parse_map(&game, av[1]);
-	ft_window(&game);
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, game.map.width * TILE_SIZE,
+			game.map.height * TILE_SIZE, "so_long");
+	render_map(&game);
+	game.move_count = 0;
+	handle_keys(&game);
+	game.player.last_move = 0;
+	// mlx_loop_hook(game.mlx, back_to_idle, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }

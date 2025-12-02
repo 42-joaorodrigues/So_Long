@@ -6,11 +6,10 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:31:39 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 19:04:05 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 09:21:52 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit.h"
 #include "render_int.h"
 #include "mlx.h"
 #include <stdlib.h>
@@ -66,7 +65,6 @@ void	mark_void_walls(t_game *game)
 {
 	int		y;
 	int		x;
-	char	**map;
 
 	y = -1;
 	while (++y < game->map.height)
@@ -74,7 +72,7 @@ void	mark_void_walls(t_game *game)
 		x = -1;
 		while (++x < game->map.width)
 		{
-			if (map[y][x] == '1' && check_sides(game, x, y)
+			if (game->map.array[y][x] == '1' && check_sides(game, x, y)
 				&& check_diagonals(game, x, y))
 				game->map.array[y][x] = '2';
 		}

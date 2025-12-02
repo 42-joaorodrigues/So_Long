@@ -60,26 +60,17 @@ rm_libft:
 
 #────────────────────────────Mandatory Compilation────────────────────────────#
 
-EVENT_SRC		= keys.c \
-				  move.c
-EVENT_SRC		:= $(addprefix event/, $(EVENT_SRC))
-
-PARSER_SRC		= parse_map.c \
-				  validate_map.c \
-				  parser_util.c
-PARSER_SRC		:= $(addprefix parser/, $(PARSER_SRC))
-
-RENDER_SRC		= sprites.c \
-				  window.c
-RENDER_SRC		:= $(addprefix render/, $(RENDER_SRC))
-
-SRC				= $(EVENT_SRC) \
-				  $(PARSER_SRC) \
-				  $(RENDER_SRC) \
-				  error.c \
-				  main.c
-SRC				:= $(addprefix src/, $(SRC))
-
+SRC				= src/parser/parse_map.c \
+				  src/parser/parser_util.c \
+				  src/parser/validate_map.c \
+				  src/render/render.c \
+				  src/render/sprites.c \
+				  src/render/void_walls.c \
+				  src/exit.c \
+				  src/keyhooks.c \
+				  src/main.c \
+				  src/move.c \
+				  src/util.c
 OBJ 			= $(SRC:%.c=$(O_DIR)/mandatory/%.o)
 INC				= -I inc $(MLX_INC) $(LFT_INC)
 

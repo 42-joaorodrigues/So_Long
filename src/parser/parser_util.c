@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:14:12 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 17:56:29 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 09:19:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_init_map(t_game *game)
 	game->map.n_exits = 0;
 	game->map.n_players = 0;
 	game->sprites = NULL;
-	game->counter_sprites = NULL;
 	game->mlx = NULL;
 	game->win = NULL;
 }

@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.h                                          :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 08:07:37 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/12/02 08:24:46 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/12/02 10:18:36 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPRITES_H
-# define SPRITES_H
+#include "so_long.h"
+#include "mlx.h"
+#include <sys/time.h>
+#include <stdlib.h>
 
-enum	e_sprites
+long	get_time_ms(void)
 {
-	PLAYER_UP0,
-	PLAYER_UP1,
-	PLAYER_UP2,
-	PLAYER_LEFT0,
-	PLAYER_LEFT1,
-	PLAYER_LEFT2,
-	PLAYER_RIGHT0,
-	PLAYER_RIGHT1,
-	PLAYER_RIGHT2,
-	PLAYER_DOWN0,
-	PLAYER_DOWN1,
-	PLAYER_DOWN2,
-	PLAYER_CHEST,
-	CHEST0,
-	CHEST1,
-	VOID,
-	WALL_V_TOP,
-	WALL_V,
-	WALL_H_TOP,
-	WALL_H,
-	FLOOR,
-	MAP_EXIT,
-	N_SPRITES
-};
+	struct timeval	tv;
 
-#endif // SPRITES_H
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+void	put_tile(t_game *game, void *sprite, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->win, sprite, x * TILE_SIZE, y
+		* TILE_SIZE);
+}

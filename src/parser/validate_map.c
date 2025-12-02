@@ -6,11 +6,10 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/30 19:03:43 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/02 09:19:20 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit.h"
 #include "parser_int.h"
 #include "lft_string.h"
 #include "lft_memory.h"
