@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 13:03:46 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:24:02 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ enum	e_sprites
 	EXIT1,
 	EXIT2,
 	EXIT3,
-	EXIT4,
+	EXIT_FINAL,
 	N_SPRITES
 };
 

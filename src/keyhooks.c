@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:14:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 19:09:34 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 14:58:57 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	key_press(const int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
-		ft_printf("Moves: %d\n", game->move_count);
+		ft_printf("\r\033[KMoves: %d\n", game->move_count);
 		ft_free_exit(game, 0);
 	}
 	if (keycode == KEY_W)
@@ -98,7 +98,7 @@ int	keyhook(t_game *game)
 
 int	x_keyhook(t_game *game)
 {
-	ft_printf("Moves: %d\n", game->move_count);
+	ft_printf("\r\033[KMoves: %d\n", game->move_count);
 	ft_free_exit(game, 0);
 	return (0);
 }
@@ -114,8 +114,9 @@ void	handle_keys(t_game *game)
 	game->key_down = 0;
 	game->key_right = 0;
 	game->last_input_time = 0;
+	game->player.last_move = 0;
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
-	mlx_hook(game->win, ClientMessage, LeaveWindowMask, x_keyhook, NULL);
+	mlx_hook(game->win, ClientMessage, LeaveWindowMask, x_keyhook, game);
 	mlx_loop_hook(game->mlx, keyhook, game);
 }

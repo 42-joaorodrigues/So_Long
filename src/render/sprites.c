@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 13:29:04 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:23:58 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,19 @@ static void	load_sprites2(t_game *game, char *sprite_addr[])
 
 void	load_sprites(t_game *game)
 {
-	load_sprites2(game, (char *[]){"assets/player_up0.xpm",
-		"assets/player_up1.xpm", "assets/player_up2.xpm",
-		"assets/player_left0.xpm", "assets/player_left1.xpm",
-		"assets/player_left2.xpm", "assets/player_right0.xpm",
-		"assets/player_right1.xpm", "assets/player_right2.xpm",
-		"assets/player_down0.xpm", "assets/player_down1.xpm",
-		"assets/player_down2.xpm", "assets/player_chest.xpm",
+	load_sprites2(game, (char *[]){"assets/player/player_up0.xpm",
+		"assets/player/player_up1.xpm", "assets/player/player_up2.xpm",
+		"assets/player/player_left0.xpm", "assets/player/player_left1.xpm",
+		"assets/player/player_left2.xpm", "assets/player/player_right0.xpm",
+		"assets/player/player_right1.xpm", "assets/player/player_right2.xpm",
+		"assets/player/player_down0.xpm", "assets/player/player_down1.xpm",
+		"assets/player/player_down2.xpm", "assets/player/player_chest.xpm",
 		"assets/chest0.xpm", "assets/chest1.xpm",
-		"assets/void.xpm",
-		"assets/wall_v_top.xpm", "assets/wall_v.xpm",
-		"assets/wall_h_top.xpm", "assets/wall_h.xpm",
-		"assets/floor.xpm", "assets/exit1.xpm",
-		"assets/exit2.xpm", "assets/exit3.xpm",
-		"assets/exit4.xpm"});
+		"assets/wall/void.xpm",
+		"assets/wall/wall_v_top.xpm", "assets/wall/wall_v.xpm",
+		"assets/wall/wall_h_top.xpm", "assets/wall/wall_h.xpm",
+		"assets/floor.xpm",
+		"assets/exit/exit1.xpm", "assets/exit/exit2.xpm",
+		"assets/exit/exit3.xpm",
+		"assets/exit/exit_final.xpm"});
 }

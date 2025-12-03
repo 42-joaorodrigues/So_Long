@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 13:30:36 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:24:06 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,16 @@ static void	move(t_game *game, int new_x, int new_y)
 
 static void	exit_tile_animation(t_game *game)
 {
-	ft_msleep(500);
-	put_tile(game, game->sprites[EXIT1], game->map.exit_x, game->map.exit_y);
-	ft_msleep(500);
-	put_tile(game, game->sprites[EXIT2], game->map.exit_x, game->map.exit_y);
-	ft_msleep(500);
-	put_tile(game, game->sprites[EXIT3], game->map.exit_x, game->map.exit_y);
-	ft_msleep(500);
-	put_tile(game, game->sprites[EXIT4], game->map.exit_x, game->map.exit_y);
+	int	i;
+	
+	mlx_do_sync(game->mlx);
+	i = -1;
+	while (++i < 4)
+	{
+		ft_msleep(500);
+		put_tile(game, game->sprites[EXIT1 + i], game->map.exit_x, game->map.exit_y);
+		mlx_do_sync(game->mlx);
+	}
 }
 
 static void	animate_walk_in_place(t_game *game)
@@ -121,12 +123,6 @@ void	update_player(t_game *game, int direction)
 		animate_walk_in_place(game);
 		return ;
 	}
-	if (game->map.array[new_y][new_x] == 'E'
-		&& game->map.collectible_count > 0)
-	{
-		animate_walk_in_place(game);
-		return ;
-	}
 	if (game->map.array[new_y][new_x] == 'C')
 	{
 		game->map.array[new_y][new_x] = 'O';
@@ -142,7 +138,7 @@ void	update_player(t_game *game, int direction)
 	if (game->map.array[new_y][new_x] == 'E'
 		&& game->map.collectible_count == 0)
 	{
-		ft_printf("Moves: %d\nCongratulations, you've won!\n", game->move_count);
+		ft_printf("\r\033[KMoves: %d\nCongratulations, you've won!\n", game->move_count);
 		ft_free_exit(game, 0);
 	}
 }
