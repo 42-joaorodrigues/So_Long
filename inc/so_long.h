@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 11:02:44 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:20:51 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void			render_player(t_game *game, int x, int y, int frame);
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);
 long			get_time_ms(void);
+void			ft_msleep(long msec);
 
 // exit
 int				ft_print_error(int err_code);

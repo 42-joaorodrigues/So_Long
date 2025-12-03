@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 19:03:34 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:30:36 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ static void	move(t_game *game, int new_x, int new_y)
 	ft_printf("\r\033[KMoves: %d", game->move_count);
 }
 
+static void	exit_tile_animation(t_game *game)
+{
+	ft_msleep(500);
+	put_tile(game, game->sprites[EXIT1], game->map.exit_x, game->map.exit_y);
+	ft_msleep(500);
+	put_tile(game, game->sprites[EXIT2], game->map.exit_x, game->map.exit_y);
+	ft_msleep(500);
+	put_tile(game, game->sprites[EXIT3], game->map.exit_x, game->map.exit_y);
+	ft_msleep(500);
+	put_tile(game, game->sprites[EXIT4], game->map.exit_x, game->map.exit_y);
+}
+
 static void	animate_walk_in_place(t_game *game)
 {
 	static int	step = 0;
@@ -119,6 +131,12 @@ void	update_player(t_game *game, int direction)
 	{
 		game->map.array[new_y][new_x] = 'O';
 		game->map.collectible_count--;
+		if (game->map.collectible_count <= 0)
+		{
+			move(game, new_x, new_y);
+			exit_tile_animation(game);
+			return ;
+		}
 	}
 	move(game, new_x, new_y);
 	if (game->map.array[new_y][new_x] == 'E'

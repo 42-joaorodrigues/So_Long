@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:53:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 09:23:54 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:12:44 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	render_map(t_game *game)
 			else if (game->map.array[y][x] == 'C')
 				put_tile(game, game->sprites[CHEST0], x, y);
 			else if (game->map.array[y][x] == 'E')
-				put_tile(game, game->sprites[MAP_EXIT], x, y);
+				put_tile(game, game->sprites[FLOOR], x, y);
 			if (game->player.x == x && game->player.y == y)
 				put_tile(game, game->sprites[PLAYER_DOWN1], x, y);
 		}

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 08:24:46 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 10:18:36 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:20:39 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ long	get_time_ms(void)
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+void	ft_msleep(long msec)
+{
+	long	start;
+
+	start = get_time_ms();
+	while (get_time_ms() - start < msec)
+		;
 }
 
 void	put_tile(t_game *game, void *sprite, int x, int y)

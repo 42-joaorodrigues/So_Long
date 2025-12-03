@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 09:20:50 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:29:04 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ void	load_sprites(t_game *game)
 		"assets/void.xpm",
 		"assets/wall_v_top.xpm", "assets/wall_v.xpm",
 		"assets/wall_h_top.xpm", "assets/wall_h.xpm",
-		"assets/floor.xpm", "assets/map_exit.xpm"});
+		"assets/floor.xpm", "assets/exit1.xpm",
+		"assets/exit2.xpm", "assets/exit3.xpm",
+		"assets/exit4.xpm"});
 }

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 08:07:37 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:03:46 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ enum	e_sprites
 	WALL_H_TOP,
 	WALL_H,
 	FLOOR,
-	MAP_EXIT,
+	EXIT1,
+	EXIT2,
+	EXIT3,
+	EXIT4,
 	N_SPRITES
 };
 
