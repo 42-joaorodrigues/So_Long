@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:01:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 14:55:42 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:44:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	ft_print_error2(const int err_code)
 		ft_puterr("At least one collectible ('C') is required\n");
 	else if (err_code == E_OBSTRUCTED_PATH)
 		ft_puterr("Path to exit/object is obstructed\n");
+	else if (err_code == E_MANY_ENEMIES)
+		ft_puterr("Too many enemies (max 10)\n");
 }
 
 int	ft_print_error(const int err_code)

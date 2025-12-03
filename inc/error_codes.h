@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.h                                             :+:      :+:    :+:   */
+/*   error_codes.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:07:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 08:07:24 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:44:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ enum	e_error_codes
 	E_NO_START = 205,
 	E_NO_EXIT = 206,
 	E_NO_COLLECTIBLE = 207,
-	E_OBSTRUCTED_PATH = 208
+	E_OBSTRUCTED_PATH = 208,
+	E_MANY_ENEMIES = 209
 };
 
 #endif // ERROR_CODES_H

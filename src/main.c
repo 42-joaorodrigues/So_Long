@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 11:01:10 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:45:15 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int ac, char **av)
 	game.move_count = 0;
 	handle_keys(&game);
 	game.player.last_move = 0;
-	// mlx_loop_hook(game.mlx, back_to_idle, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

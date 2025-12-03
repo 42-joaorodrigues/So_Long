@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 13:20:51 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:37:07 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,18 @@ typedef struct s_player
 
 typedef struct s_enemy
 {
+	int			type;
 	int			x;
 	int			y;
 	int			direction;
-	int			speed;
-	int			active;
 }				t_enemy;
 
 typedef struct s_game
 {
 	t_map		map;
 	t_player	player;
+	t_enemy		enemies[10];
+	int			enemies_count;
 	int			move_count;
 	void		**sprites;
 	void		*mlx;

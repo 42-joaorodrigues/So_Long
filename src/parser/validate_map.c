@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/02 09:19:20 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:56:59 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ static void	handle_character(const char c, const int x, const int y,
 		game->map.n_players++;
 		if (game->map.n_players > 1)
 			ft_free_exit(game, E_MULTIPLE_STARTS);
+		game->map.array[y][x] = '0';
+	}
+	else if (c == 'H' || c == 'V')
+	{
+		if (game->enemies_count >= 10)
+			ft_free_exit(game, E_MANY_ENEMIES);
+		game->enemies[game->enemies_count].type = (c == 'V');
+		game->enemies[game->enemies_count].x = x;
+		game->enemies[game->enemies_count].y = y;
+		if (c == 'H')
+			game->enemies[game->enemies_count].type = RIGHT;
+		else
+			game->enemies[game->enemies_count].type = DOWN;
+		game->enemies_count++;
 		game->map.array[y][x] = '0';
 	}
 	else if (c == 'C')
