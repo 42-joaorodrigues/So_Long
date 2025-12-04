@@ -6,27 +6,39 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:58:21 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 10:10:46 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:47:31 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_INT_H
 # define PARSER_INT_H
 
-#include "so_long.h"
+# include "so_long.h"
 
+// flood_fill
 typedef struct s_flood_fill
 {
-	int			collectibles;
-	int			exit_found;
-}				t_flood_fill;
+	int	collectibles;
+	int	exit_found;
+}		t_flood_fill;
 
+// validate_characters
+typedef struct s_counts
+{
+	int	players_count;
+	int	exits_count;
+}		t_counts;
 
 // validate_map
-void					validate_map(t_game *game);
+void	validate_map(t_game *game);
 
-// util
-void					ft_init_map(t_game *game);
-char					**ft_duplicate_map(char **map);
+// flood_fill
+void	flood_fill(t_game *game);
+
+// void_walls
+void	mark_void_walls(t_game *game);
+
+// sprites_ids
+void	set_sprite_ids(t_game *game);
 
 #endif // MAP_H

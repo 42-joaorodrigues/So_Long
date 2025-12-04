@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:14:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 14:58:57 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:04:23 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	keyhook(t_game *game)
 	long		current_time;
 
 	current_time = get_time_ms();
+	update_enemies(game);
 	if (current_time - game->last_input_time >= 150)
 	{
 		if (game->key_w || game->key_up)
@@ -90,6 +91,11 @@ int	keyhook(t_game *game)
 			game->last_input_time = current_time;
 			update_player(game, DOWN);
 		}
+	}
+	if (check_enemy_collision(game))
+	{
+		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->move_count);
+		ft_free_exit(game, 0);
 	}
 	if (current_time - game->player.last_move > 150)
 		render_player(game, game->player.x, game->player.y, 1);

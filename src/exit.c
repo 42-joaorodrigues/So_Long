@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:01:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 16:44:33 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:13:00 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	ft_free_sprites(t_game *game, void **sprite_ptr, int n_sprites)
 
 void	ft_free_exit(t_game *game, const int err_code)
 {
-	ft_free_partial_matrix((void **)game->map.array, game->map.height - 1);
+	ft_free_partial_matrix((void **)game->map.tiles, game->map.height - 1);
 	ft_free_sprites(game, game->sprites, N_SPRITES);
 	if (game->win)
 	{

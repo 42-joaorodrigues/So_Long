@@ -3,6 +3,11 @@
 		"mlx.h": "c",
 		"sprites.h": "c",
 		"lft_print.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"fcntl.h": "c",
+		"lft_string.h": "c",
+		"parser_int.h": "c",
+		"type_traits": "c",
+		"utility": "c"
 	}
 }

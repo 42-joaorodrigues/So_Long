@@ -66,6 +66,7 @@ SRC				= src/parser/parse_map.c \
 				  src/render/render.c \
 				  src/render/sprites.c \
 				  src/render/void_walls.c \
+				  src/enemy.c \
 				  src/exit.c \
 				  src/keyhooks.c \
 				  src/main.c \

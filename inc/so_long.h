@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 16:37:07 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 14:10:19 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SO_LONG_H
 
 # define TILE_SIZE 64
+
+#include <stdio.h> // degub
 
 # include "error_codes.h"
 # include "key_codes.h"
@@ -27,16 +29,20 @@ enum			e_direction
 	DOWN
 };
 
+typedef struct s_tile
+{
+	char		value;
+	int			sprite_id;
+}				t_tile;
+
 typedef struct s_map
 {
-	char		**array;
+	t_tile		**tiles;
 	int			width;
 	int			height;
+	int			collectible_count;
 	int			exit_x;
 	int			exit_y;
-	int			collectible_count;
-	int			n_players;
-	int			n_exits;
 }				t_map;
 
 typedef struct s_player
@@ -45,6 +51,7 @@ typedef struct s_player
 	int			y;
 	int			direction;
 	long		last_move;
+	int			collected;
 }				t_player;
 
 typedef struct s_enemy
@@ -88,8 +95,14 @@ void			handle_keys(t_game *game);
 void			update_player(t_game *game, int direction);
 void			render_player(t_game *game, int x, int y, int frame);
 
+// enemy
+void			update_enemies(t_game *game);
+void			render_enemies(t_game *game);
+int				check_enemy_collision(t_game *game);
+
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);
+void			put_transparent_tile(t_game *game, void *bg, void *fg, int x, int y);
 long			get_time_ms(void);
 void			ft_msleep(long msec);
 
