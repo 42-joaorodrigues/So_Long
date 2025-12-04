@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:01:56 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 00:47:35 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static void	load_sprite_array(t_game *game, char *sprite_array[])
 
 void	load_sprites(t_game *game)
 {
-	load_sprite_array(game, (char *[]){"assets/player/player_up0.xpm",
-		"assets/player/player_up1.xpm", "assets/player/player_up2.xpm",
-		"assets/player/player_left0.xpm", "assets/player/player_left1.xpm",
-		"assets/player/player_left2.xpm", "assets/player/player_right0.xpm",
-		"assets/player/player_right1.xpm", "assets/player/player_right2.xpm",
-		"assets/player/player_down0.xpm", "assets/player/player_down1.xpm",
+	load_sprite_array(game, (char *[]){"assets/player/player_up1.xpm",
+		"assets/player/player_up0.xpm", "assets/player/player_up2.xpm",
+		"assets/player/player_left1.xpm", "assets/player/player_left0.xpm",
+		"assets/player/player_left2.xpm", "assets/player/player_right1.xpm",
+		"assets/player/player_right0.xpm", "assets/player/player_right2.xpm",
+		"assets/player/player_down1.xpm", "assets/player/player_down0.xpm",
 		"assets/player/player_down2.xpm", "assets/player/player_chest.xpm",
 		"assets/chest0.xpm", "assets/chest1.xpm",
 		"assets/wall/void.xpm",

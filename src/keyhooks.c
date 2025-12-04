@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:14:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:34:59 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 00:35:52 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,22 @@ int	key_loop(t_game *game, long current_time)
 	if (game->key_pressed.w || game->key_pressed.up)
 	{
 		game->last_input_time = current_time;
-		update_player(game, UP);
+		update_player(game, 0, -1, UP);
 	}
 	else if (game->key_pressed.a || game->key_pressed.left)
 	{
 		game->last_input_time = current_time;
-		update_player(game, LEFT);
+		update_player(game, -1, 0, LEFT);
 	}
 	else if (game->key_pressed.d || game->key_pressed.right)
 	{
 		game->last_input_time = current_time;
-		update_player(game, RIGHT);
+		update_player(game, 1, 0, RIGHT);
 	}
 	else if (game->key_pressed.s || game->key_pressed.down)
 	{
 		game->last_input_time = current_time;
-		update_player(game, DOWN);
+		update_player(game, 0, 1, DOWN);
 	}
 	return (0);
 }
@@ -97,14 +97,6 @@ int	x_keyhook(t_game *game)
 
 void	handle_keys(t_game *game)
 {
-	game->key_pressed.w = 0;
-	game->key_pressed.a = 0;
-	game->key_pressed.s = 0;
-	game->key_pressed.d = 0;
-	game->key_pressed.up = 0;
-	game->key_pressed.left = 0;
-	game->key_pressed.down = 0;
-	game->key_pressed.right = 0;
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
 	mlx_hook(game->win, ClientMessage, LeaveWindowMask, x_keyhook, game);

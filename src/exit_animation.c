@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:55:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 23:00:50 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 23:20:02 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	exit_tile_animation(t_game *game)
 			game->map.exit_y);
 		mlx_do_sync(game->mlx);
 	}
+	game->map.tiles[game->map.exit_y][game->map.exit_x].value = 'E';
 }

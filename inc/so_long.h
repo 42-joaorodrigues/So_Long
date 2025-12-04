@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:56:13 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 00:33:03 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ typedef struct s_player
 	int			direction;
 	int			sprite_id;
 	int			move_count;
-	long		last_move_ms;
 	int			collected_count;
+	int			is_idle;
+	int			was_in_chest;
 }				t_player;
 
 typedef struct s_enemy
@@ -88,7 +89,7 @@ void	load_sprites(t_game *game);
 // render
 void			render_element_at(t_game *game, int x, int y);
 void			render_enemy(t_game *game, t_enemy enemy);
-void			render_player(t_game *game, int step);
+void			render_player(t_game *game);
 void			render_all(t_game *game);
 
 // keyhooks
@@ -96,8 +97,7 @@ void			handle_keys(t_game *game);
 int				key_loop(t_game *game, long current_time);
 
 // player
-void		init_player(t_game *game);
-void			update_player(t_game *game, int direction);
+void		update_player(t_game *game, int x_offset, int y_offset, int direction);
 
 // enemy
 // void			update_enemies(t_game *game);
