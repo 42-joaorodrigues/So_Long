@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:36:39 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:47:53 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:35:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	parse_map(t_game *game, const char *filename)
 	validate_map_file(filename);
 	map_list = read_map(filename);
 	load_map(map_list, &game->map);
-	validate_map(game);
+	get_map_data(game);
 	flood_fill(game);
 	mark_void_walls(game);
 	set_sprite_ids(game);

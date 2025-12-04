@@ -6,20 +6,21 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 14:10:19 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 21:05:42 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define TILE_SIZE 64
-
 #include <stdio.h> // degub
 
 # include "error_codes.h"
-# include "key_codes.h"
+# include "key_util.h"
 # include "sprites.h"
+
+# define HORIZONTAL 0
+# define VERTICAL 1
 
 enum			e_direction
 {
@@ -50,8 +51,10 @@ typedef struct s_player
 	int			x;
 	int			y;
 	int			direction;
+	int			sprite_id;
+	int			move_count;
 	long		last_move;
-	int			collected;
+	int			collected_count;
 }				t_player;
 
 typedef struct s_enemy
@@ -60,26 +63,19 @@ typedef struct s_enemy
 	int			x;
 	int			y;
 	int			direction;
+	int			sprite_id;
 }				t_enemy;
 
 typedef struct s_game
 {
+	void		*mlx;
+	void		*win;
 	t_map		map;
 	t_player	player;
 	t_enemy		enemies[10];
 	int			enemies_count;
-	int			move_count;
 	void		**sprites;
-	void		*mlx;
-	void		*win;
-	int			key_w;
-	int			key_a;
-	int			key_s;
-	int			key_d;
-	int			key_up;
-	int			key_left;
-	int			key_down;
-	int			key_right;
+	t_keys		key_pressed;
 	long		last_input_time;
 }				t_game;
 
@@ -103,6 +99,7 @@ int				check_enemy_collision(t_game *game);
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);
 void			put_transparent_tile(t_game *game, void *bg, void *fg, int x, int y);
+void			*create_blended_image(t_game *game, void *bg, void *fg, int opacity);
 long			get_time_ms(void);
 void			ft_msleep(long msec);
 

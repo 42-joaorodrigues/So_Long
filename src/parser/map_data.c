@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:48:08 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:35:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	handle_character(t_game *game, int x, int y, t_counts *counts)
 		ft_free_exit(game, E_INVALID_CHARACTER);
 }
 
-void	validate_map(t_game *game)
+void	get_map_data(t_game *game)
 {
 	t_counts	counts;
 	int			x;

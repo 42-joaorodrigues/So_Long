@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:58:21 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:47:31 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:35:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_counts
 }		t_counts;
 
 // validate_map
-void	validate_map(t_game *game);
+void	get_map_data(t_game *game);
 
 // flood_fill
 void	flood_fill(t_game *game);

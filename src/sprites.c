@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/03 16:59:22 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:01:56 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-static void	load_sprites2(t_game *game, char *sprite_addr[])
+static void	load_sprite_array(t_game *game, char *sprite_array[])
 {
 	int	width;
 	int	height;
@@ -28,7 +28,7 @@ static void	load_sprites2(t_game *game, char *sprite_addr[])
 	i = -1;
 	while (++i < N_SPRITES)
 	{
-		game->sprites[i] = mlx_xpm_file_to_image(game->mlx, sprite_addr[i],
+		game->sprites[i] = mlx_xpm_file_to_image(game->mlx, sprite_array[i],
 				&width, &height);
 		if (!game->sprites[i])
 			ft_free_exit(game, E_SPRITES_MISSING);
@@ -37,7 +37,7 @@ static void	load_sprites2(t_game *game, char *sprite_addr[])
 
 void	load_sprites(t_game *game)
 {
-	load_sprites2(game, (char *[]){"assets/player/player_up0.xpm",
+	load_sprite_array(game, (char *[]){"assets/player/player_up0.xpm",
 		"assets/player/player_up1.xpm", "assets/player/player_up2.xpm",
 		"assets/player/player_left0.xpm", "assets/player/player_left1.xpm",
 		"assets/player/player_left2.xpm", "assets/player/player_right0.xpm",

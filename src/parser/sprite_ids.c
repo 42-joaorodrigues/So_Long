@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:37:09 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:48:05 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:51:17 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static void	set_walls(t_game *game, int x, int y)
 		tile->sprite_id = WALL_H;
 }
 
+void	set_enemies_sprite_ids(t_game *game)
+{
+	
+}
+
 void	set_sprite_ids(t_game *game)
 {
 	int y;
@@ -48,7 +53,7 @@ void	set_sprite_ids(t_game *game)
 		while (++x < game->map.width)
 		{
 			tile = &game->map.tiles[y][x];
-			if (tile->value == '0')
+			if (tile->value == '0' || tile->value == 'E')
 				tile->sprite_id = FLOOR;
 			else if (tile->value == '1')
 				set_walls(game, x, y);
@@ -56,8 +61,7 @@ void	set_sprite_ids(t_game *game)
 				tile->sprite_id = VOID;
 			else if (tile->value == 'C')
 				tile->sprite_id = CHEST0;
-			else if (tile->value == 'E')
-				tile->sprite_id = FLOOR;
 		}
 	}
+	game->player.sprite_id = PLAYER_DOWN1;
 }
