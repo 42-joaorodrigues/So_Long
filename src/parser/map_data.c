@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   map_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:35:08 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:32:41 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void	handle_enemy(t_game *game, int x, int y, char *c)
 {
 	if (game->enemies_count >= 10)
 		ft_free_exit(game, E_MANY_ENEMIES);
-	game->enemies[game->enemies_count].type = (c == 'V');
+	game->enemies[game->enemies_count].type = (*c == 'V');
 	game->enemies[game->enemies_count].x = x;
 	game->enemies[game->enemies_count].y = y;
-	if (c == 'H')
+	if (*c == 'H')
 		game->enemies[game->enemies_count].direction = RIGHT;
 	else
 		game->enemies[game->enemies_count].direction = DOWN;
@@ -37,7 +37,7 @@ static void	handle_enemy(t_game *game, int x, int y, char *c)
 	*c = '0';
 }
 
-static int	handle_character(t_game *game, int x, int y, t_counts *counts)
+static void	handle_character(t_game *game, int x, int y, t_counts *counts)
 {
 	char	*c;
 
@@ -53,7 +53,7 @@ static int	handle_character(t_game *game, int x, int y, t_counts *counts)
 		*c = '0';
 	}
 	else if (*c == 'H' || *c == 'V')
-		handle_character(game, x, y, counts);
+		handle_enemy(game, x, y, counts);
 	else if (*c == 'C')
 		game->map.collectible_count++;
 	else if (*c == 'E')

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 13:15:20 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:28:24 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void	update_enemies(t_game *game)
 	render_enemies(game);
 	if (check_enemy_collision(game))
 	{
-		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->move_count);
+		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->paleyr.move_count);
 		ft_free_exit(game, 0);
 	}
 }

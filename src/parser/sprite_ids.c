@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:37:09 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:51:17 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:33:30 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static void	set_walls(t_game *game, int x, int y)
 		tile->sprite_id = WALL_H;
 }
 
-void	set_enemies_sprite_ids(t_game *game)
-{
+// void	set_enemies_sprite_ids(t_game *game)
+// {
 	
-}
+// }
 
 void	set_sprite_ids(t_game *game)
 {

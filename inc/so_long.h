@@ -6,18 +6,17 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 21:05:42 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:56:13 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <stdio.h> // degub
-
 # include "error_codes.h"
 # include "key_util.h"
 # include "sprites.h"
+# include <stdio.h> // degub
 
 # define HORIZONTAL 0
 # define VERTICAL 1
@@ -50,10 +49,11 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
+	int			step;
 	int			direction;
 	int			sprite_id;
 	int			move_count;
-	long		last_move;
+	long		last_move_ms;
 	int			collected_count;
 }				t_player;
 
@@ -82,26 +82,38 @@ typedef struct s_game
 // parser
 void			parse_map(t_game *game, const char *filename);
 
+// sprites
+void	load_sprites(t_game *game);
+
 // render
-void			render_map(t_game *game);
+void			render_element_at(t_game *game, int x, int y);
+void			render_enemy(t_game *game, t_enemy enemy);
+void			render_player(t_game *game, int step);
+void			render_all(t_game *game);
 
 // keyhooks
 void			handle_keys(t_game *game);
-// move
+int				key_loop(t_game *game, long current_time);
+
+// player
+void		init_player(t_game *game);
 void			update_player(t_game *game, int direction);
-void			render_player(t_game *game, int x, int y, int frame);
 
 // enemy
-void			update_enemies(t_game *game);
-void			render_enemies(t_game *game);
-int				check_enemy_collision(t_game *game);
+// void			update_enemies(t_game *game);
+// void			render_enemies(t_game *game);
+// int				check_enemy_collision(t_game *game);
+
+// exit_animation
+void			exit_tile_animation(t_game *game);
 
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);
-void			put_transparent_tile(t_game *game, void *bg, void *fg, int x, int y);
-void			*create_blended_image(t_game *game, void *bg, void *fg, int opacity);
+void			*create_blended_image(t_game *game, void *bg, void *fg,
+					int opacity);
 long			get_time_ms(void);
 void			ft_msleep(long msec);
+int				is_out_of_bounds(t_game *game, int x, int y);
 
 // exit
 int				ft_print_error(int err_code);

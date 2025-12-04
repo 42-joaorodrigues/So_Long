@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:36:39 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:35:08 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:32:58 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	parse_map_line(t_map *map, int line_idx, char *map_line)
 {
 	int	i;
 
-	if (ft_strlen(map_line) != map->width)
+	if ((int)ft_strlen(map_line) != map->width)
 	{
 		ft_free_partial_matrix(map->tiles, --line_idx);
 		ft_print_error(E_MAP_NOT_RECTANGLE);

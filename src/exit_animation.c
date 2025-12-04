@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   exit_animation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 08:24:46 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:59:47 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/12/04 21:55:20 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/12/04 23:00:50 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_util.h"
+#include "so_long.h"
 #include "mlx.h"
-#include <sys/time.h>
-#include <stdlib.h>
 
-long	get_time_ms(void)
+void	exit_tile_animation(t_game *game)
 {
-	struct timeval	tv;
+	int	i;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
-void	ft_msleep(long msec)
-{
-	long	start;
-
-	start = get_time_ms();
-	while (get_time_ms() - start < msec)
-		;
+	mlx_do_sync(game->mlx);
+	i = -1;
+	while (++i < 4)
+	{
+		ft_msleep(500);
+		put_tile(game, game->sprites[EXIT1 + i], game->map.exit_x,
+			game->map.exit_y);
+		mlx_do_sync(game->mlx);
+	}
 }

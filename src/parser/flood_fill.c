@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:47:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:47:55 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:31:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static int	r_flood_fill(char **map, int x, int y, t_flood_fill *flood_fill)
 	map[y][x] = '1';
 	if (!flood_fill->collectibles && flood_fill->exit_found)
 		return (1);
-	if (ft_flood_fill(map, x + 1, y, flood_fill) || ft_flood_fill(map, x - 1, y,
-			flood_fill) || ft_flood_fill(map, x, y + 1, flood_fill)
-		|| ft_flood_fill(map, x, y - 1, flood_fill))
+	if (r_flood_fill(map, x + 1, y, flood_fill)
+		|| r_flood_fill(map, x - 1, y, flood_fill) || r_flood_fill(map, x, y + 1, flood_fill)
+		|| r_flood_fill(map, x, y - 1, flood_fill))
 		return (1);
 	return (0);
 }
@@ -74,4 +74,6 @@ void	flood_fill(t_game *game)
 	map_valid = r_flood_fill(map_dup, game->player.x, game->player.y,
 			&flood_fill);
 	ft_free_matrix(map_dup);
+	if (!map_valid)
+		ft_free_exit(game, E_OBSTRUCTED_PATH);
 }

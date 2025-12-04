@@ -6,12 +6,11 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 20:53:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:59:50 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:35:10 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_util.h"
-
 
 static unsigned int	blend_pixel(unsigned int bg, unsigned int fg, int opacity)
 {

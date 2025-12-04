@@ -6,17 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:53:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 20:58:03 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:57:24 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	put_tile(t_game *game, void *sprite, int x, int y)
-{
-	mlx_put_image_to_window(game->mlx, game->win, sprite, x * TILE_SIZE, y
-		* TILE_SIZE);
-}
+#include "mlx.h"
 
 void	render_element_at(t_game *game, int x, int y)
 {
@@ -39,7 +34,7 @@ void	render_enemy(t_game *game, t_enemy enemy)
 	mlx_destroy_image(game->mlx, img);
 }
 
-void	render_player(t_game *game)
+void	render_player(t_game *game, int step)
 {
 	void	*img;
 	int		x;
@@ -49,6 +44,7 @@ void	render_player(t_game *game)
 	x = game->player.x;
 	y = game->player.y;
 	bg = game->sprites[game->map.tiles[y][x].sprite_id];
+	game->player.sprite_id = game->player.direction * 3 + step;
 	img = create_blended_image(game, bg, game->sprites[game->player.sprite_id], 100);
 	mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE,
 		y * TILE_SIZE);
@@ -67,4 +63,5 @@ void	render_all(t_game *game)
 		while (++x < game->map.width)
 			render_element_at(game, x, y);
 	}
+	render_player(game, 1);
 }

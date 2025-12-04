@@ -6,12 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:31:39 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:48:10 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:33:43 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "render_int.h"
+#include "parser_int.h"
 #include <stdlib.h>
 
 static int	check_sides(t_game *game, int x, int y)

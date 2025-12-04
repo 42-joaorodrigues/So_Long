@@ -60,17 +60,19 @@ rm_libft:
 
 #────────────────────────────Mandatory Compilation────────────────────────────#
 
-SRC				= src/parser/parse_map.c \
-				  src/parser/parser_util.c \
-				  src/parser/validate_map.c \
-				  src/render/render.c \
-				  src/render/sprites.c \
-				  src/render/void_walls.c \
-				  src/enemy.c \
+SRC				= src/parser/flood_fill.c \
+				  src/parser/map_data.c \
+				  src/parser/parse_map.c \
+				  src/parser/sprite_ids.c \
+				  src/parser/void_walls.c \
+				  src/exit_animation.c \
 				  src/exit.c \
 				  src/keyhooks.c \
 				  src/main.c \
-				  src/move.c \
+				  src/mlx_util.c \
+				  src/player.c \
+				  src/render.c \
+				  src/sprites.c \
 				  src/util.c
 OBJ 			= $(SRC:%.c=$(O_DIR)/mandatory/%.o)
 INC				= -I inc $(MLX_INC) $(LFT_INC)
