@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:11:08 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:49:47 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	init(t_game *game)
 			game->map.height * TILE_SIZE, "so_long");
 	game->player.direction = DOWN;
 	game->player.is_idle = 1;
-	init_enemies(game);
 }
 
 static int	ft_loop_hook(t_game *game)
