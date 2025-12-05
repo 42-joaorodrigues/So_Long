@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:53:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 00:34:35 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:17:25 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	render_element_at(t_game *game, int x, int y)
 	put_tile(game, game->sprites[game->map.tiles[y][x].sprite_id], x, y);
 }
 
-void	render_enemy(t_game *game, t_enemy enemy)
+void	render_enemy(t_game *game, t_enemy enemy, int opacity)
 {
 	void	*img;
 	int		x;
@@ -28,7 +28,7 @@ void	render_enemy(t_game *game, t_enemy enemy)
 	x = enemy.x;
 	y = enemy.y;
 	bg = game->sprites[game->map.tiles[y][x].sprite_id];
-	img = create_blended_image(game, bg, game->sprites[enemy.sprite_id], 50);
+	img = create_blended_image(game, bg, game->sprites[enemy.sprite_id], opacity);
 	put_tile(game, img, x, y);
 	mlx_destroy_image(game->mlx, img);
 }
@@ -57,7 +57,7 @@ void	render_player(t_game *game)
 	}
 	game->player.sprite_id = game->player.direction * 3 + frame;
 	img = create_blended_image(game, bg, game->sprites[game->player.sprite_id],
-			50);
+			100);
 	put_tile(game, img, x, y);
 	mlx_destroy_image(game->mlx, img);
 }

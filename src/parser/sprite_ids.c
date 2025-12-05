@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:37:09 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:33:30 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:43:23 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,25 @@ static void	set_walls(t_game *game, int x, int y)
 		tile->sprite_id = WALL_H;
 }
 
-// void	set_enemies_sprite_ids(t_game *game)
-// {
-	
-// }
+void	set_enemies_sprite_ids(t_game *game)
+{
+	int		i;
+	t_enemy	*enemy;
+
+	i = -1;
+	while (++i < game->enemies_count)
+	{
+		enemy = &game->enemies[i];
+		if (enemy->direction == UP)
+			enemy->sprite_id = GHOST_UP;
+		else if (enemy->direction == LEFT)
+			enemy->sprite_id = GHOST_LEFT;
+		else if (enemy->direction == RIGHT)
+			enemy->sprite_id = GHOST_RIGHT;
+		else
+			enemy->sprite_id = GHOST_DOWN;
+	}
+}
 
 void	set_sprite_ids(t_game *game)
 {

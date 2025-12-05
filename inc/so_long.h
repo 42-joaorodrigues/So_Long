@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 00:33:03 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:41:54 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct s_enemy
 	int			y;
 	int			direction;
 	int			sprite_id;
+	int			speed;
+	int			step;
+	long		last_move;
 }				t_enemy;
 
 typedef struct s_game
@@ -88,7 +91,7 @@ void	load_sprites(t_game *game);
 
 // render
 void			render_element_at(t_game *game, int x, int y);
-void			render_enemy(t_game *game, t_enemy enemy);
+void			render_enemy(t_game *game, t_enemy enemy, int opacity);
 void			render_player(t_game *game);
 void			render_all(t_game *game);
 
@@ -100,9 +103,10 @@ int				key_loop(t_game *game, long current_time);
 void		update_player(t_game *game, int x_offset, int y_offset, int direction);
 
 // enemy
-// void			update_enemies(t_game *game);
-// void			render_enemies(t_game *game);
-// int				check_enemy_collision(t_game *game);
+void			init_enemies(t_game *game);
+void			update_enemies(t_game *game);
+void			render_enemies(t_game *game);
+int				check_enemy_collision(t_game *game);
 
 // exit_animation
 void			exit_tile_animation(t_game *game);

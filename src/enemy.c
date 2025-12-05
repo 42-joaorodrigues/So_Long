@@ -6,96 +6,89 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:28:24 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:42:03 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "lft_print.h"
 
-static int	get_enemy_sprite(t_enemy *enemy)
+void	init_enemies(t_game *game)
 {
-	if (enemy->direction == UP)
-		return (GHOST_UP);
-	else if (enemy->direction == LEFT)
-		return (GHOST_LEFT);
-	else if (enemy->direction == RIGHT)
-		return (GHOST_RIGHT);
-	return (GHOST_DOWN);
-}
+	int	i;
 
-static int	is_enemy_visible(t_game *game, t_enemy *enemy)
-{
-	char	tile;
-
-	if (enemy->x < 0 || enemy->x >= game->map.width)
-		return (0);
-	if (enemy->y < 0 || enemy->y >= game->map.height)
-		return (0);
-	tile = game->map.array[enemy->y][enemy->x];
-	if (tile == '1' || tile == '2')
-		return (0);
-	return (1);
-}
-
-static void	render_tile_at(t_game *game, int x, int y)
-{
-	char	tile;
-
-	if (x < 0 || x >= game->map.width || y < 0 || y >= game->map.height)
-		return ;
-	tile = game->map.array[y][x];
-	if (tile == 'C')
-		put_tile(game, game->sprites[CHEST0], x, y);
-	else if (tile == 'O')
-		put_tile(game, game->sprites[CHEST1], x, y);
-	else if (tile == '1' || tile == '2')
-		return ;
-	else
-		put_tile(game, game->sprites[FLOOR], x, y);
-	if (game->player.x == x && game->player.y == y)
-		render_player(game, x, y, 1);
-}
-
-static void	move_enemy(t_game *game, t_enemy *enemy)
-{
-	int	old_x;
-	int	old_y;
-
-	old_x = enemy->x;
-	old_y = enemy->y;
-	printf("type: %d\n", enemy->type);
-	if (enemy->type == 0)
+	i = -1;
+	while (++i < game->enemies_count)
 	{
-		if (enemy->direction == RIGHT)
-		{
+		game->enemies[i].step = 0;
+		game->enemies[i].last_move = 0;
+	}
+}
+
+static int	is_enemy_in_wall(t_game *game, t_enemy *enemy)
+{
+	char	tile;
+
+	if (is_out_of_bounds(game, enemy->x, enemy->y))
+		return (1);
+	tile = game->map.tiles[enemy->y][enemy->x].value;
+	if (tile == '1')
+		return (1);
+	return (0);
+}
+
+static int	should_bounce(t_game *game, int x, int y)
+{
+	char	tile;
+
+	if (is_out_of_bounds(game, x, y))
+		return (1);
+	tile = game->map.tiles[y][x].value;
+	if (tile == '2')
+		return (1);
+	return (0);
+}
+
+static void	move_enemy_horizontal(t_game *game, t_enemy *enemy)
+{
+	enemy->step = !enemy->step;
+	if (enemy->direction == RIGHT)
+	{
+		if (should_bounce(game, enemy->x + 1, enemy->y))
+			enemy->direction = LEFT;
+		else
 			enemy->x++;
-			if (enemy->x >= game->map.width - 1)
-				enemy->direction = LEFT;
-		}
-		else
-		{
-			enemy->x--;
-			if (enemy->x <= 0)
-				enemy->direction = RIGHT;
-		}
+		enemy->sprite_id = GHOST_RIGHT + enemy->step;
 	}
 	else
 	{
-		if (enemy->direction == DOWN)
-		{
-			enemy->y++;
-			if (enemy->y >= game->map.height - 1)
-				enemy->direction = UP;
-		}
+		if (should_bounce(game, enemy->x - 1, enemy->y))
+			enemy->direction = RIGHT;
 		else
-		{
-			enemy->y--;
-			if (enemy->y <= 0)
-				enemy->direction = DOWN;
-		}
+			enemy->x--;
+		enemy->sprite_id = GHOST_LEFT + enemy->step;
 	}
-	render_tile_at(game, old_x, old_y);
+}
+
+static void	move_enemy_vertical(t_game *game, t_enemy *enemy)
+{
+	enemy->step = !enemy->step;
+	if (enemy->direction == DOWN)
+	{
+		if (should_bounce(game, enemy->x, enemy->y + 1))
+			enemy->direction = UP;
+		else
+			enemy->y++;
+		enemy->sprite_id = GHOST_DOWN + enemy->step;
+	}
+	else
+	{
+		if (should_bounce(game, enemy->x, enemy->y - 1))
+			enemy->direction = DOWN;
+		else
+			enemy->y--;
+		enemy->sprite_id = GHOST_UP + enemy->step;
+	}
 }
 
 int	check_enemy_collision(t_game *game)
@@ -105,7 +98,7 @@ int	check_enemy_collision(t_game *game)
 	i = -1;
 	while (++i < game->enemies_count)
 	{
-		if (!is_enemy_visible(game, &game->enemies[i]))
+		if (is_enemy_in_wall(game, &game->enemies[i]))
 			continue ;
 		if (game->enemies[i].x == game->player.x
 			&& game->enemies[i].y == game->player.y)
@@ -114,39 +107,19 @@ int	check_enemy_collision(t_game *game)
 	return (0);
 }
 
-static void	*get_bg_sprite(t_game *game, int x, int y)
-{
-	char	tile;
-
-	tile = game->map.array[y][x];
-	if (tile == 'C')
-		return (game->sprites[CHEST0]);
-	else if (tile == 'O')
-		return (game->sprites[CHEST1]);
-	else if (tile == 'E')
-		return (game->sprites[FLOOR]);
-	return (game->sprites[FLOOR]);
-}
-
 void	render_enemies(t_game *game)
 {
-	int		i;
-	void	*bg;
+	int	i;
+	int	opacity;
 
 	i = -1;
 	while (++i < game->enemies_count)
 	{
-		// bg = get_bg_sprite(game, game->enemies[i].x, game->enemies[i].y);
-		// 	put_transparent_tile(game, bg,
-		// 		game->sprites[get_enemy_sprite(&game->enemies[i])],
-		// 		game->enemies[i].x, game->enemies[i].y);
-		if (is_enemy_visible(game, &game->enemies[i]))
-		{
-			bg = get_bg_sprite(game, game->enemies[i].x, game->enemies[i].y);
-			put_transparent_tile(game, bg,
-				game->sprites[get_enemy_sprite(&game->enemies[i])],
-				game->enemies[i].x, game->enemies[i].y);
-		}
+		if (is_enemy_in_wall(game, &game->enemies[i]))
+			opacity = 50;
+		else
+			opacity = 80;
+		render_enemy(game, game->enemies[i], opacity);
 	}
 }
 
@@ -157,16 +130,18 @@ void	update_enemies(t_game *game)
 	long		current_time;
 
 	current_time = get_time_ms();
-	if (current_time - last_update < 600)
+	if (current_time - last_update < 300)
 		return ;
 	last_update = current_time;
 	i = -1;
 	while (++i < game->enemies_count)
-		move_enemy(game, &game->enemies[i]);
-	render_enemies(game);
-	if (check_enemy_collision(game))
 	{
-		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->paleyr.move_count);
-		ft_free_exit(game, 0);
+		render_element_at(game, game->enemies[i].x, game->enemies[i].y);
+		if (game->enemies[i].type == HORIZONTAL)
+			move_enemy_horizontal(game, &game->enemies[i]);
+		else
+			move_enemy_vertical(game, &game->enemies[i]);
 	}
+	render_enemies(game);
+	render_player(game);
 }

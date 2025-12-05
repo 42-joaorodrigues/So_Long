@@ -6,12 +6,13 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 00:46:24 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:11:08 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "lft_memory.h"
+#include "lft_print.h"
 #include <mlx.h>
 #include <stdlib.h>
 
@@ -22,7 +23,7 @@ static void	init(t_game *game)
 			game->map.height * TILE_SIZE, "so_long");
 	game->player.direction = DOWN;
 	game->player.is_idle = 1;
-	// init_enemies
+	init_enemies(game);
 }
 
 static int	ft_loop_hook(t_game *game)
@@ -30,7 +31,7 @@ static int	ft_loop_hook(t_game *game)
 	long		current_time;
 
 	current_time = get_time_ms();
-	// update_enemies(game);
+	update_enemies(game);
 	if (current_time - game->last_input_time >= 150)
 	{
 		if (!game->player.is_idle)
@@ -40,11 +41,11 @@ static int	ft_loop_hook(t_game *game)
 		}
 		key_loop(game, current_time);
 	}
-	// if (check_enemy_collision(game))
-	// {
-	// 	ft_printf("\r\033[KMoves: %d\nYou died!\n", game->player.move_count);
-	// 	ft_free_exit(game, 0);
-	// }
+	if (check_enemy_collision(game))
+	{
+		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->player.move_count);
+		ft_free_exit(game, 0);
+	}
 	return (0);
 }
 

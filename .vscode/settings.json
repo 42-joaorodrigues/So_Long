@@ -9,6 +9,7 @@
 		"parser_int.h": "c",
 		"type_traits": "c",
 		"utility": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"lft_memory.h": "c"
 	}
 }

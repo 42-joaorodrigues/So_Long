@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 00:47:35 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:31:52 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static void	load_sprite_array(t_game *game, char *sprite_array[])
 
 void	load_sprites(t_game *game)
 {
-	load_sprite_array(game, (char *[]){"assets/player/player_up1.xpm",
-		"assets/player/player_up0.xpm", "assets/player/player_up2.xpm",
-		"assets/player/player_left1.xpm", "assets/player/player_left0.xpm",
-		"assets/player/player_left2.xpm", "assets/player/player_right1.xpm",
-		"assets/player/player_right0.xpm", "assets/player/player_right2.xpm",
-		"assets/player/player_down1.xpm", "assets/player/player_down0.xpm",
+	load_sprite_array(game, (char *[]){"assets/player/player_up0.xpm",
+		"assets/player/player_up1.xpm", "assets/player/player_up2.xpm",
+		"assets/player/player_left0.xpm", "assets/player/player_left1.xpm",
+		"assets/player/player_left2.xpm", "assets/player/player_right0.xpm",
+		"assets/player/player_right1.xpm", "assets/player/player_right2.xpm",
+		"assets/player/player_down0.xpm", "assets/player/player_down1.xpm",
 		"assets/player/player_down2.xpm", "assets/player/player_chest.xpm",
 		"assets/chest0.xpm", "assets/chest1.xpm",
 		"assets/wall/void.xpm",
@@ -51,6 +51,8 @@ void	load_sprites(t_game *game)
 		"assets/floor.xpm",
 		"assets/exit/exit1.xpm", "assets/exit/exit2.xpm",
 		"assets/exit/exit3.xpm", "assets/exit/exit_final.xpm",
-		"assets/ghost/ghost_up.xpm", "assets/ghost/ghost_left.xpm",
-		"assets/ghost/ghost_right.xpm", "assets/ghost/ghost_down.xpm"});
+		"assets/ghost/ghost_up.xpm", "assets/ghost/ghost_up1.xpm",
+		"assets/ghost/ghost_left.xpm", "assets/ghost/ghost_left1.xpm",
+		"assets/ghost/ghost_right.xpm", "assets/ghost/ghost_right1.xpm",
+		"assets/ghost/ghost_down.xpm", "assets/ghost/ghost_down1.xpm"});
 }

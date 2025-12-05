@@ -61,10 +61,11 @@ rm_libft:
 #────────────────────────────Mandatory Compilation────────────────────────────#
 
 SRC				= src/parser/flood_fill.c \
-				  src/parser/map_data.c \
+				  src/parser/parse_elements.c \
 				  src/parser/parse_map.c \
 				  src/parser/sprite_ids.c \
 				  src/parser/void_walls.c \
+				  src/enemy.c \
 				  src/exit_animation.c \
 				  src/exit.c \
 				  src/keyhooks.c \
