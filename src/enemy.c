@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 16:08:00 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:44:24 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,12 @@ static void	move_enemy_vertical(t_game *game, t_enemy *enemy)
 
 int	check_enemy_collision(t_game *game)
 {
-	int	i;
+	int		i;
+	long	current_time;
 
+	current_time = get_time_ms();
+	if (current_time - game->last_collision_time < 3000)
+		return (0);
 	i = -1;
 	while (++i < game->enemies_count)
 	{
@@ -134,7 +138,10 @@ int	check_enemy_collision(t_game *game)
 			continue ;
 		if (game->enemies[i].x == game->player.x
 			&& game->enemies[i].y == game->player.y)
+		{
+			game->last_collision_time = current_time;
 			return (1);
+		}
 	}
 	return (0);
 }
@@ -146,13 +153,6 @@ void	render_enemies(t_game *game)
 	i = -1;
 	while (++i < game->enemies_count)
 		render_enemy(game, game->enemies[i], 80);
-}
-
-static int	get_speed_delay(int speed)
-{
-	if (speed == 2)
-		return (150);
-	return (300);
 }
 
 void	update_enemies(t_game *game)
@@ -167,7 +167,7 @@ void	update_enemies(t_game *game)
 	while (++i < game->enemies_count)
 	{
 		if (current_time - game->enemies[i].last_move
-			< get_speed_delay(game->enemies[i].speed))
+			< game->enemies[i].speed)
 			continue ;
 		game->enemies[i].last_move = current_time;
 		render_element_at(game, game->enemies[i].x, game->enemies[i].y);

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 16:11:47 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:48:56 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	handle_enemy(t_game *game, int x, int y, char *c)
 		if (y > game->map.height / 2)
 			game->enemies[game->enemies_count].direction = UP;
 	}
-	game->enemies[game->enemies_count].speed = 1;
+	game->enemies[game->enemies_count].speed = ENEMY_SPEED;
 	if (*c == 'h' || *c == 'v')
-		game->enemies[game->enemies_count].speed = 2;
+		game->enemies[game->enemies_count].speed = ENEMY_SPEED / 2;
 	game->enemies_count++;
 	*c = '0';
 }

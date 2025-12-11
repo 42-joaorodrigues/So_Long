@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:49:47 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:41:56 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->map.width * TILE_SIZE,
-			game->map.height * TILE_SIZE, "so_long");
+			(game->map.height + 1) * TILE_SIZE, "so_long");
 	game->player.direction = DOWN;
 	game->player.is_idle = 1;
 }
@@ -29,21 +29,23 @@ static int	ft_loop_hook(t_game *game)
 {
 	long		current_time;
 
-	current_time = get_time_ms();
+	update_exit_animation(game);
 	update_enemies(game);
-	if (current_time - game->last_input_time >= 150)
+	if (check_enemy_collision(game))
+	{
+		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->player.move_count);
+		ft_free_exit(game, 0);
+	}
+	current_time = get_time_ms();
+	if (current_time - game->last_input_time >= 120)
+		key_loop(game, current_time);
+	if (current_time - game->last_input_time >= 170)
 	{
 		if (!game->player.is_idle)
 		{
 			game->player.is_idle = 1;
 			render_player(game);
 		}
-		key_loop(game, current_time);
-	}
-	if (check_enemy_collision(game))
-	{
-		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->player.move_count);
-		ft_free_exit(game, 0);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:41:54 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:25:21 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "key_util.h"
 # include "sprites.h"
 # include <stdio.h> // degub
+
+# define ENEMY_SPEED 300
 
 # define HORIZONTAL 0
 # define VERTICAL 1
@@ -81,6 +83,10 @@ typedef struct s_game
 	void		**sprites;
 	t_keys		key_pressed;
 	long		last_input_time;
+	int			exit_animating;
+	int			exit_frame;
+	long		exit_anim_time;
+	long		last_collision_time;
 }				t_game;
 
 // parser
@@ -93,6 +99,7 @@ void	load_sprites(t_game *game);
 void			render_element_at(t_game *game, int x, int y);
 void			render_enemy(t_game *game, t_enemy enemy, int opacity);
 void			render_player(t_game *game);
+void			render_counter(t_game *game);
 void			render_all(t_game *game);
 
 // keyhooks
@@ -110,6 +117,7 @@ int				check_enemy_collision(t_game *game);
 
 // exit_animation
 void			exit_tile_animation(t_game *game);
+void			update_exit_animation(t_game *game);
 
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);

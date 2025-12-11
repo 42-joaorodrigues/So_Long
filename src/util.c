@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 08:24:46 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:34:23 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:42:22 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	put_tile(t_game *game, void *sprite, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx, game->win, sprite, x * TILE_SIZE, y
+	mlx_put_image_to_window(game->mlx, game->win, sprite, x * TILE_SIZE, (y + 1)
 		* TILE_SIZE);
 }
 

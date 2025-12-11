@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:30:54 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:04:10 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ enum	e_sprites
 	WALL_H_TOP,
 	WALL_H,
 	FLOOR,
-	EXIT1,
 	EXIT2,
-	EXIT3,
 	EXIT_FINAL,
 	GHOST_UP,
 	GHOST_UP1,
@@ -50,6 +48,8 @@ enum	e_sprites
 	GHOST_RIGHT1,
 	GHOST_DOWN,
 	GHOST_DOWN1,
+	COUNTER0,
+	COUNTER1,
 	N_SPRITES
 };
 

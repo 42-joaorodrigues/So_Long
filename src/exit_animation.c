@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:55:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:20:39 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:39:00 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,28 @@
 
 void	exit_tile_animation(t_game *game)
 {
-	int	i;
+	game->exit_animating = 1;
+	game->exit_frame = 0;
+	game->exit_anim_time = get_time_ms();
+}
 
-	mlx_do_sync(game->mlx);
-	i = -1;
-	while (++i < 4)
+void	update_exit_animation(t_game *game)
+{
+	long	current_time;
+
+	if (!game->exit_animating)
+		return ;
+	current_time = get_time_ms();
+	if (current_time - game->exit_anim_time < 350)
+		return ;
+	game->exit_anim_time = current_time;
+	game->map.tiles[game->map.exit_y][game->map.exit_x].sprite_id = EXIT2 + game->exit_frame;
+	render_element_at(game, game->map.exit_x, game->map.exit_y);
+	game->exit_frame++;
+	if (game->exit_frame >= 2)
 	{
-		ft_msleep(500);
-		put_tile(game, game->sprites[EXIT1 + i], game->map.exit_x,
-			game->map.exit_y);
-		mlx_do_sync(game->mlx);
+		game->exit_animating = 0;
+		game->map.tiles[game->map.exit_y][game->map.exit_x].sprite_id
+			= EXIT_FINAL;
 	}
-	game->map.tiles[game->map.exit_y][game->map.exit_x].sprite_id = EXIT_FINAL;
 }

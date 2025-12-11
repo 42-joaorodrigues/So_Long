@@ -11,7 +11,7 @@ CFLAGS 		= -Wall -Werror -Wextra -Wno-incompatible-pointer-types
 LIBS_DIR	= libs
 O_DIR		= obj
 
-all: $(HEADER) $(LIBFT) $(NAME)
+all: $(NAME)
 
 #───────────────────────────────Animation Variables───────────────────────────#
 
@@ -95,7 +95,8 @@ $(O_DIR)/mandatory/%.o: %.c
 	echo $$next > $(COMPILED_COUNT)
 
 # Compile Push_Swap
-$(NAME): $(HEADER) $(MLX) $(LIBFT) $(OBJ)
+# $(NAME): $(HEADER) $(MLX) $(LIBFT) $(OBJ)
+$(NAME): $(HEADER) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $@ $(MLX_ADD) $(LFT_ADD)
 	@make .success ACTION="Compiling" OBJECT="$(NAME)" --no-print-directory
 	@rm -f $(COMPILED_COUNT)
