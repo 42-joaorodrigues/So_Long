@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 16:26:09 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:10:41 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	move(t_game *game, int new_x, int new_y)
 	if (game->player.was_in_chest)
 	{
 		game->map.tiles[old_y][old_x].value = 'O';
-		game->map.tiles[old_y][old_x].sprite_id = CHEST1;
+		game->map.tiles[old_y][old_x].sprite_id = CHEST_CLOSE;
 		game->player.was_in_chest = 0;
 	}
 	render_element_at(game, old_x, old_y);

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:53:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 12:49:43 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:22:07 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	render_element_at(t_game *game, int x, int y)
 	put_tile(game, game->sprites[game->map.tiles[y][x].sprite_id], x, y);
 }
 
-void	render_enemy(t_game *game, t_enemy enemy, int opacity)
+void	render_enemy(t_game *game, t_enemy enemy)
 {
 	void	*img;
 	int		x;
@@ -31,7 +31,7 @@ void	render_enemy(t_game *game, t_enemy enemy, int opacity)
 	x = enemy.x;
 	y = enemy.y;
 	bg = game->sprites[game->map.tiles[y][x].sprite_id];
-	img = create_blended_image(game, bg, game->sprites[enemy.sprite_id], opacity);
+	img = create_blended_image(game, bg, game->sprites[enemy.sprite_id]);
 	put_tile(game, img, x, y);
 	mlx_destroy_image(game->mlx, img);
 }
@@ -48,7 +48,7 @@ void	render_player(t_game *game)
 	y = game->player.y;
 	if (game->map.tiles[y][x].value == 'C')
 	{
-		put_tile(game, game->sprites[PLAYER_CHEST], x, y);
+		put_tile(game, game->sprites[PLAYER_OPEN_CHEST], x, y);
 		return ;
 	}
 	bg = game->sprites[game->map.tiles[y][x].sprite_id];
@@ -56,8 +56,7 @@ void	render_player(t_game *game)
 	if (!game->player.is_idle)
 		frame = 1 + game->player.step;
 	game->player.sprite_id = game->player.direction * 3 + frame;
-	img = create_blended_image(game, bg, game->sprites[game->player.sprite_id],
-			100);
+	img = create_blended_image(game, bg, game->sprites[game->player.sprite_id]);
 	put_tile(game, img, x, y);
 	mlx_destroy_image(game->mlx, img);
 }
@@ -98,6 +97,5 @@ void	render_all(t_game *game)
 	i = -1;
 	while (++i < game->map.width)
 		mlx_put_image_to_window(game->mlx, game->win, game->sprites[VOID], i * TILE_SIZE, 0);
-	mlx_set_font(game->mlx, game->win, "-*-*-bold-r-*-*-20-*-*-*-*-*-*-*");
 	render_counter(game);
 }

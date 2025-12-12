@@ -6,39 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 14:44:24 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:19:40 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "lft_print.h"
-
-static int	is_enemy_in_wall(t_game *game, t_enemy *enemy)
-{
-	char	tile;
-
-	if (is_out_of_bounds(game, enemy->x, enemy->y))
-		return (1);
-	tile = game->map.tiles[enemy->y][enemy->x].value;
-	if (tile == '1')
-		return (1);
-	return (0);
-}
-
-// static int	is_enemy_at(t_game *game, int x, int y, t_enemy *self)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < game->enemies_count)
-// 	{
-// 		if (&game->enemies[i] == self)
-// 			continue ;
-// 		if (game->enemies[i].x == x && game->enemies[i].y == y)
-// 			return (1);
-// 	}
-// 	return (0);
-// }
 
 static int	should_bounce(t_game *game, int x, int y, t_enemy *enemy)
 {
@@ -50,8 +23,6 @@ static int	should_bounce(t_game *game, int x, int y, t_enemy *enemy)
 	if (tile == '1' || tile == '2')
 		return (1);
 	(void)enemy;
-	// if (is_enemy_at(game, x, y, enemy))
-	// 	return (1);
 	return (0);
 }
 
@@ -62,7 +33,11 @@ static void	move_enemy_horizontal(t_game *game, t_enemy *enemy)
 		if (should_bounce(game, enemy->x + 1, enemy->y, enemy))
 		{
 			enemy->direction = LEFT;
-			enemy->x--;
+			if (!should_bounce(game, enemy->x - 1, enemy->y, enemy))
+			{
+				enemy->x--;
+				enemy->step = !enemy->step;
+			}
 		}
 		else
 		{
@@ -75,7 +50,11 @@ static void	move_enemy_horizontal(t_game *game, t_enemy *enemy)
 		if (should_bounce(game, enemy->x - 1, enemy->y, enemy))
 		{
 			enemy->direction = RIGHT;
-			enemy->x++;
+			if (!should_bounce(game, enemy->x + 1, enemy->y, enemy))
+			{
+				enemy->x++;
+				enemy->step = !enemy->step;
+			}
 		}
 		else
 		{
@@ -84,9 +63,9 @@ static void	move_enemy_horizontal(t_game *game, t_enemy *enemy)
 		}
 	}
 	if (enemy->direction == RIGHT)
-		enemy->sprite_id = GHOST_RIGHT + enemy->step;
+		enemy->sprite_id = ENEMY_WALK_RIGHT_0 + enemy->step;
 	else
-		enemy->sprite_id = GHOST_LEFT + enemy->step;
+		enemy->sprite_id = ENEMY_WALK_LEFT_0 + enemy->step;
 }
 
 static void	move_enemy_vertical(t_game *game, t_enemy *enemy)
@@ -96,7 +75,11 @@ static void	move_enemy_vertical(t_game *game, t_enemy *enemy)
 		if (should_bounce(game, enemy->x, enemy->y + 1, enemy))
 		{
 			enemy->direction = UP;
-			enemy->y--;
+			if (!should_bounce(game, enemy->x, enemy->y - 1, enemy))
+			{
+				enemy->y--;
+				enemy->step = !enemy->step;
+			}
 		}
 		else
 		{
@@ -109,7 +92,11 @@ static void	move_enemy_vertical(t_game *game, t_enemy *enemy)
 		if (should_bounce(game, enemy->x, enemy->y - 1, enemy))
 		{
 			enemy->direction = DOWN;
-			enemy->y++;
+			if (!should_bounce(game, enemy->x, enemy->y + 1, enemy))
+			{
+				enemy->y++;
+				enemy->step = !enemy->step;
+			}
 		}
 		else
 		{
@@ -118,9 +105,9 @@ static void	move_enemy_vertical(t_game *game, t_enemy *enemy)
 		}
 	}
 	if (enemy->direction == DOWN)
-		enemy->sprite_id = GHOST_DOWN + enemy->step;
+		enemy->sprite_id = ENEMY_WALK_DOWN_0 + enemy->step;
 	else
-		enemy->sprite_id = GHOST_UP + enemy->step;
+		enemy->sprite_id = ENEMY_WALK_UP_1 + enemy->step;
 }
 
 int	check_enemy_collision(t_game *game)
@@ -134,8 +121,8 @@ int	check_enemy_collision(t_game *game)
 	i = -1;
 	while (++i < game->enemies_count)
 	{
-		if (is_enemy_in_wall(game, &game->enemies[i]))
-			continue ;
+		// if (is_enemy_in_wall(game, &game->enemies[i]))
+		// 	continue ;
 		if (game->enemies[i].x == game->player.x
 			&& game->enemies[i].y == game->player.y)
 		{
@@ -152,7 +139,7 @@ void	render_enemies(t_game *game)
 
 	i = -1;
 	while (++i < game->enemies_count)
-		render_enemy(game, game->enemies[i], 80);
+		render_enemy(game, game->enemies[i]);
 }
 
 void	update_enemies(t_game *game)

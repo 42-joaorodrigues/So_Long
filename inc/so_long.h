@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 16:25:21 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:20:22 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	load_sprites(t_game *game);
 
 // render
 void			render_element_at(t_game *game, int x, int y);
-void			render_enemy(t_game *game, t_enemy enemy, int opacity);
+void			render_enemy(t_game *game, t_enemy enemy);
 void			render_player(t_game *game);
 void			render_counter(t_game *game);
 void			render_all(t_game *game);
@@ -121,8 +121,7 @@ void			update_exit_animation(t_game *game);
 
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);
-void			*create_blended_image(t_game *game, void *bg, void *fg,
-					int opacity);
+void			*create_blended_image(t_game *game, void *bg, void *fg);
 long			get_time_ms(void);
 void			ft_msleep(long msec);
 int				is_out_of_bounds(t_game *game, int x, int y);

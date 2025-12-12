@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_util.h                                         :+:      :+:    :+:   */
+/*   mlx_util_int.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 20:27:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:35:22 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:25:47 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ typedef struct s_blend
 	char	*bg;
 	char	*fg;
 	int		bpp;
-	int		opacity;
 }			t_blend;
-
-void		*create_blended_image(t_game *game, void *bg, void *fg,
-				int opacity);
 
 #endif

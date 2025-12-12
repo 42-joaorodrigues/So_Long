@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 16:41:56 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:32:07 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	init(t_game *game)
 			(game->map.height + 1) * TILE_SIZE, "so_long");
 	game->player.direction = DOWN;
 	game->player.is_idle = 1;
+	mlx_set_font(game->mlx, game->win, "-*-*-bold-r-*-*-20-*-*-*-*-*-*-*");
 }
 
 static int	ft_loop_hook(t_game *game)
@@ -39,7 +40,7 @@ static int	ft_loop_hook(t_game *game)
 	current_time = get_time_ms();
 	if (current_time - game->last_input_time >= 120)
 		key_loop(game, current_time);
-	if (current_time - game->last_input_time >= 170)
+	if (current_time - game->last_input_time >= 150)
 	{
 		if (!game->player.is_idle)
 		{

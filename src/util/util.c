@@ -6,12 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 08:24:46 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 16:42:22 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:27:19 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "mlx_util.h"
+#include "so_long.h"
 #include <stdlib.h>
 #include <sys/time.h>
 

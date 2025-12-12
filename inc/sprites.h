@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 16:04:10 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:15:54 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,37 @@
 
 enum	e_sprites
 {
-	PLAYER_UP0,
-	PLAYER_UP1,
-	PLAYER_UP2,
-	PLAYER_LEFT0,
-	PLAYER_LEFT1,
-	PLAYER_LEFT2,
-	PLAYER_RIGHT0,
-	PLAYER_RIGHT1,
-	PLAYER_RIGHT2,
-	PLAYER_DOWN0,
-	PLAYER_DOWN1,
-	PLAYER_DOWN2,
-	PLAYER_CHEST,
-	CHEST0,
-	CHEST1,
-	VOID,
-	WALL_V_TOP,
-	WALL_V,
-	WALL_H_TOP,
-	WALL_H,
+	PLAYER_IDLE_UP,
+	PLAYER_WALK_UP_0,
+	PLAYER_WALK_UP_1,
+	PLAYER_IDLE_LEFT,
+	PLAYER_WALK_LEFT_0,
+	PLAYER_WALK_LEFT_1,
+	PLAYER_IDLE_RIGHT,
+	PLAYER_WALK_RIGHT_0,
+	PLAYER_WALK_RIGHT_1,
+	PLAYER_IDLE_DOWN,
+	PLAYER_WALK_DOWN_0,
+	PLAYER_WALK_DOWN_1,
+	PLAYER_OPEN_CHEST,
+	WALL_VERTICAL_TOP,
+	WALL_VERTICAL,
+	WALL_HORIZONTAL_TOP,
+	WALL_HORIZONTAL,
+	CHEST_OPEN,
+	CHEST_CLOSE,
 	FLOOR,
-	EXIT2,
-	EXIT_FINAL,
-	GHOST_UP,
-	GHOST_UP1,
-	GHOST_LEFT,
-	GHOST_LEFT1,
-	GHOST_RIGHT,
-	GHOST_RIGHT1,
-	GHOST_DOWN,
-	GHOST_DOWN1,
-	COUNTER0,
-	COUNTER1,
+	VOID,
+	EXIT_OPEN_0,
+	EXIT_OPEN_1,
+	ENEMY_WALK_UP_0,
+	ENEMY_WALK_UP_1,
+	ENEMY_WALK_LEFT_0,
+	ENEMY_WALK_LEFT_1,
+	ENEMY_WALK_RIGHT_0,
+	ENEMY_WALK_RIGHT_1,
+	ENEMY_WALK_DOWN_0,
+	ENEMY_WALK_DOWN_1,
 	N_SPRITES
 };
 

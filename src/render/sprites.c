@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 16:04:41 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:46:09 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,20 @@ static void	load_sprite_array(t_game *game, char *sprite_array[])
 
 void	load_sprites(t_game *game)
 {
-	load_sprite_array(game, (char *[]){"assets/player/player_up0.xpm",
-		"assets/player/player_up1.xpm", "assets/player/player_up2.xpm",
-		"assets/player/player_left0.xpm", "assets/player/player_left1.xpm",
-		"assets/player/player_left2.xpm", "assets/player/player_right0.xpm",
-		"assets/player/player_right1.xpm", "assets/player/player_right2.xpm",
-		"assets/player/player_down0.xpm", "assets/player/player_down1.xpm",
-		"assets/player/player_down2.xpm", "assets/player/player_chest.xpm",
-		"assets/chest0.xpm", "assets/chest1.xpm",
-		"assets/wall/void.xpm",
-		"assets/wall/wall_v_top.xpm", "assets/wall/wall_v.xpm",
-		"assets/wall/wall_h_top.xpm", "assets/wall/wall_h.xpm",
-		"assets/floor.xpm",
-		"assets/exit/exit2.xpm", "assets/exit/exit_final.xpm",
-		"assets/ghost/ghost_up.xpm", "assets/ghost/ghost_up1.xpm",
-		"assets/ghost/ghost_left.xpm", "assets/ghost/ghost_left1.xpm",
-		"assets/ghost/ghost_right.xpm", "assets/ghost/ghost_right1.xpm",
-		"assets/ghost/ghost_down.xpm", "assets/ghost/ghost_down1.xpm",
-		"assets/counter0.xpm", "assets/counter1.xpm"});
+	load_sprite_array(game, (char *[]){"assets/player/idle_up.xpm",
+		"assets/player/walk_up_0.xpm", "assets/player/walk_up_1.xpm",
+		"assets/player/idle_left.xpm", "assets/player/walk_left_0.xpm",
+		"assets/player/walk_left_1.xpm", "assets/player/idle_right.xpm",
+		"assets/player/walk_right_0.xpm", "assets/player/walk_right_1.xpm",
+		"assets/player/idle_down.xpm", "assets/player/walk_down_0.xpm",
+		"assets/player/walk_down_1.xpm", "assets/player/open_chest.xpm",
+		"assets/wall/vertical_top.xpm", "assets/wall/vertical.xpm",
+		"assets/wall/horizontal_top.xpm", "assets/wall/horizontal.xpm",
+		"assets/chest_close.xpm", "assets/chest_open.xpm",
+		"assets/floor.xpm", "assets/void.xpm",
+		"assets/exit/open_0.xpm", "assets/exit/open_1.xpm",
+		"assets/bat/walk_up_0.xpm", "assets/bat/walk_up_1.xpm",
+		"assets/spider/walk_left_0.xpm", "assets/spider/walk_left_1.xpm",
+		"assets/spider/walk_right_0.xpm", "assets/spider/walk_right_1.xpm",
+		"assets/bat/walk_down_0.xpm", "assets/bat/walk_down_1.xpm"});
 }

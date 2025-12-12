@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:37:09 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:43:23 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:19:32 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static void	set_walls(t_game *game, int x, int y)
 		down = game->map.tiles[y + 1][x].value;
 	tile = &game->map.tiles[y][x];
 	if (up != '1' && down == '1')
-		tile->sprite_id = WALL_V_TOP;
+		tile->sprite_id = WALL_VERTICAL_TOP;
 	else if ((up == '1' || up == '2') && down == '1')
-		tile->sprite_id = WALL_V;
+		tile->sprite_id = WALL_VERTICAL;
 	else if (up != '1')
-		tile->sprite_id = WALL_H_TOP;
+		tile->sprite_id = WALL_HORIZONTAL_TOP;
 	else
-		tile->sprite_id = WALL_H;
+		tile->sprite_id = WALL_HORIZONTAL;
 }
 
 void	set_enemies_sprite_ids(t_game *game)
@@ -45,13 +45,13 @@ void	set_enemies_sprite_ids(t_game *game)
 	{
 		enemy = &game->enemies[i];
 		if (enemy->direction == UP)
-			enemy->sprite_id = GHOST_UP;
+			enemy->sprite_id = ENEMY_WALK_UP_0;
 		else if (enemy->direction == LEFT)
-			enemy->sprite_id = GHOST_LEFT;
+			enemy->sprite_id = ENEMY_WALK_LEFT_0;
 		else if (enemy->direction == RIGHT)
-			enemy->sprite_id = GHOST_RIGHT;
+			enemy->sprite_id = ENEMY_WALK_RIGHT_0;
 		else
-			enemy->sprite_id = GHOST_DOWN;
+			enemy->sprite_id = ENEMY_WALK_DOWN_0;
 	}
 }
 
@@ -75,8 +75,8 @@ void	set_sprite_ids(t_game *game)
 			else if (tile->value == '2')
 				tile->sprite_id = VOID;
 			else if (tile->value == 'C')
-				tile->sprite_id = CHEST0;
+				tile->sprite_id = CHEST_OPEN;
 		}
 	}
-	game->player.sprite_id = PLAYER_DOWN1;
+	game->player.sprite_id = PLAYER_WALK_DOWN_0;
 }
