@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   render_enemy_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 08:24:46 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 16:44:22 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/12/12 16:00:00 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/12/12 16:34:17 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "so_long.h"
-#include <stdlib.h>
-#include <sys/time.h>
 
-void	put_tile(t_game *game, void *sprite, int x, int y)
+void	render_enemy(t_game *game, t_enemy enemy)
 {
-	mlx_put_image_to_window(game->mlx, game->win, sprite, x * TILE_SIZE, (y + 1)
-		* TILE_SIZE);
+	void	*img;
+	int		x;
+	int		y;
+	void	*bg;
+
+	x = enemy.x;
+	y = enemy.y;
+	bg = game->sprites[game->map.tiles[y][x].sprite_id];
+	img = create_blended_image(game, bg, game->sprites[enemy.sprite_id]);
+	put_tile(game, img, x, y);
+	mlx_destroy_image(game->mlx, img);
 }
 
-int	is_out_of_bounds(t_game *game, int x, int y)
+void	render_enemies(t_game *game)
 {
-	return (x < 0 || x >= game->map.width || y < 0 || y >= game->map.height);
-}
+	int	i;
 
-long	get_time_ms(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	i = -1;
+	while (++i < game->enemies_count)
+		render_enemy(game, game->enemies[i]);
 }

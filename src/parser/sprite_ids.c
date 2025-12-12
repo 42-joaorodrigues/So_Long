@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:37:09 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 14:19:32 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:35:26 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	set_enemies_sprite_ids(t_game *game)
 
 void	set_sprite_ids(t_game *game)
 {
-	int y;
-	int x;
-	t_tile *tile;
+	int		y;
+	int		x;
+	t_tile	*tile;
 
 	y = -1;
 	while (++y < game->map.height)

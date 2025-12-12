@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:47:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:31:33 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:35:07 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static int	r_flood_fill(char **map, int x, int y, t_flood_fill *flood_fill)
 	if (!flood_fill->collectibles && flood_fill->exit_found)
 		return (1);
 	if (r_flood_fill(map, x + 1, y, flood_fill)
-		|| r_flood_fill(map, x - 1, y, flood_fill) || r_flood_fill(map, x, y + 1, flood_fill)
+		|| r_flood_fill(map, x - 1, y, flood_fill)
+		|| r_flood_fill(map, x, y + 1, flood_fill)
 		|| r_flood_fill(map, x, y - 1, flood_fill))
 		return (1);
 	return (0);

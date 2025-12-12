@@ -6,30 +6,20 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 15:20:22 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:44:57 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "directions_util.h"
 # include "error_codes.h"
 # include "key_util.h"
 # include "sprites.h"
 # include <stdio.h> // degub
 
 # define ENEMY_SPEED 300
-
-# define HORIZONTAL 0
-# define VERTICAL 1
-
-enum			e_direction
-{
-	UP,
-	LEFT,
-	RIGHT,
-	DOWN
-};
 
 typedef struct s_tile
 {
@@ -89,43 +79,45 @@ typedef struct s_game
 	long		last_collision_time;
 }				t_game;
 
-// parser
+/* Parser */
 void			parse_map(t_game *game, const char *filename);
 
+/* Render */
 // sprites
-void	load_sprites(t_game *game);
-
+void			load_sprites(t_game *game);
 // render
 void			render_element_at(t_game *game, int x, int y);
-void			render_enemy(t_game *game, t_enemy enemy);
-void			render_player(t_game *game);
-void			render_counter(t_game *game);
 void			render_all(t_game *game);
+// BONUS enemy
+void			render_enemy(t_game *game, t_enemy enemy);
+void			render_enemies(t_game *game);
+// player
+void			render_player(t_game *game);
+// BONUS counter
+void			render_counter(t_game *game);
 
-// keyhooks
+/* Input */
 void			handle_keys(t_game *game);
 int				key_loop(t_game *game, long current_time);
 
+/* Game */
 // player
-void		update_player(t_game *game, int x_offset, int y_offset, int direction);
-
-// enemy
-void			init_enemies(t_game *game);
+void			update_player(t_game *game, int x_offset, int y_offset,
+					int direction);
+// BONUS enemy
 void			update_enemies(t_game *game);
-void			render_enemies(t_game *game);
 int				check_enemy_collision(t_game *game);
-
-// exit_animation
+// BONUS exit_animation
 void			exit_tile_animation(t_game *game);
 void			update_exit_animation(t_game *game);
 
+/* UTIL */
 // util
 void			put_tile(t_game *game, void *sprite, int x, int y);
-void			*create_blended_image(t_game *game, void *bg, void *fg);
-long			get_time_ms(void);
-void			ft_msleep(long msec);
 int				is_out_of_bounds(t_game *game, int x, int y);
-
+long			get_time_ms(void);
+// mlx_util
+void			*create_blended_image(t_game *game, void *bg, void *fg);
 // exit
 int				ft_print_error(int err_code);
 void			ft_free_exit(t_game *game, int err_code);

@@ -6,12 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:18:42 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 14:46:09 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:26:57 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "mlx.h"
+#include "so_long.h"
 #include <stdlib.h>
 
 static void	load_sprite_array(t_game *game, char *sprite_array[])
@@ -46,9 +46,8 @@ void	load_sprites(t_game *game)
 		"assets/player/walk_down_1.xpm", "assets/player/open_chest.xpm",
 		"assets/wall/vertical_top.xpm", "assets/wall/vertical.xpm",
 		"assets/wall/horizontal_top.xpm", "assets/wall/horizontal.xpm",
-		"assets/chest_close.xpm", "assets/chest_open.xpm",
-		"assets/floor.xpm", "assets/void.xpm",
-		"assets/exit/open_0.xpm", "assets/exit/open_1.xpm",
+		"assets/chest_close.xpm", "assets/chest_open.xpm", "assets/floor.xpm",
+		"assets/void.xpm", "assets/exit/open_0.xpm", "assets/exit/open_1.xpm",
 		"assets/bat/walk_up_0.xpm", "assets/bat/walk_up_1.xpm",
 		"assets/spider/walk_left_0.xpm", "assets/spider/walk_left_1.xpm",
 		"assets/spider/walk_right_0.xpm", "assets/spider/walk_right_1.xpm",

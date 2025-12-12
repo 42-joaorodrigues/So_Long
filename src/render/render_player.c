@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/30 18:53:58 by joao-alm          #+#    #+#             */
+/*   Created: 2025/12/12 16:00:00 by joao-alm          #+#    #+#             */
 /*   Updated: 2025/12/12 16:34:17 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,28 +13,27 @@
 #include "mlx.h"
 #include "so_long.h"
 
-void	render_element_at(t_game *game, int x, int y)
+void	render_player(t_game *game)
 {
-	put_tile(game, game->sprites[game->map.tiles[y][x].sprite_id], x, y);
-}
+	void	*img;
+	int		x;
+	int		y;
+	void	*bg;
+	int		frame;
 
-void	render_all(t_game *game)
-{
-	int	y;
-	int	x;
-	int	i;
-
-	y = -1;
-	while (++y < game->map.height)
+	x = game->player.x;
+	y = game->player.y;
+	if (game->map.tiles[y][x].value == 'C')
 	{
-		x = -1;
-		while (++x < game->map.width)
-			render_element_at(game, x, y);
+		put_tile(game, game->sprites[PLAYER_OPEN_CHEST], x, y);
+		return ;
 	}
-	render_player(game);
-	i = -1;
-	while (++i < game->map.width)
-		mlx_put_image_to_window(game->mlx, game->win, game->sprites[VOID], i
-			* TILE_SIZE, 0);
-	render_counter(game);
+	bg = game->sprites[game->map.tiles[y][x].sprite_id];
+	frame = 0;
+	if (!game->player.is_idle)
+		frame = 1 + game->player.step;
+	game->player.sprite_id = game->player.direction * 3 + frame;
+	img = create_blended_image(game, bg, game->sprites[game->player.sprite_id]);
+	put_tile(game, img, x, y);
+	mlx_destroy_image(game->mlx, img);
 }

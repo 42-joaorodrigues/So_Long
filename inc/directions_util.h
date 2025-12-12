@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_util_int.h                                     :+:      :+:    :+:   */
+/*   directions_util.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 20:27:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 16:45:45 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/12/12 15:34:17 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/12/12 16:45:32 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_UTIL_INT_H
-# define MLX_UTIL_INT_H
+#ifndef DIRECTIONS_UTIL_H
+# define DIRECTIONS_UTIL_H
 
-# include "mlx.h"
-# include "so_long.h"
+# define HORIZONTAL 0
+# define VERTICAL 1
 
-typedef struct s_blend
+enum	e_direction
 {
-	char	*img;
-	char	*bg;
-	char	*fg;
-	int		bpp;
-}			t_blend;
+	UP,
+	LEFT,
+	RIGHT,
+	DOWN
+};
 
 #endif

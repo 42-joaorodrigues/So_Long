@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:58:21 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 15:34:04 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:49:12 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct s_counts
 
 // parse_elements
 void	parse_elements(t_game *game);
+
+// BONUS parse_enemy
+void	parse_enemy(t_game *game, int x, int y, char *c);
 
 // flood_fill
 void	flood_fill(t_game *game);

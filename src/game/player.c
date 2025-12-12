@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:01:15 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 14:10:41 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:36:41 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void	update_player(t_game *game, int x_offset, int y_offset, int direction)
 	}
 	if (c == 'E' && game->player.collected_count == game->map.collectible_count)
 	{
-		ft_printf("\r\033[KMoves: %d\nCongratulations, you've won!\n",
-			game->player.move_count);
+		ft_printf("\r\033[KMoves: %d\nYou won!\n", game->player.move_count);
 		ft_free_exit(game, 0);
 	}
 }

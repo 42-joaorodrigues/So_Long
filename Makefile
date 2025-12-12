@@ -10,139 +10,61 @@ CC     		= cc
 CFLAGS 		= -Wall -Werror -Wextra -Wno-incompatible-pointer-types
 LIBS_DIR	= libs
 O_DIR		= obj
+HEADER		= $(O_DIR)/.header
 
 all: $(NAME)
 
-#───────────────────────────────Animation Variables───────────────────────────#
-
-YELLOW			= \033[38;2;255;248;147m# FFF893
-PINK			= \033[38;2;231;133;190m# E785BE
-GREEN			= \033[38;2;129;223;164m# 81DFA4
-RESET			= \033[0m
-
-HEADER			= $(O_DIR)/.header
-COMPILED_COUNT	= $(O_DIR)/.compiled_count
-
-#──────────────────────────────────MiniLibX───────────────────────────────────#
-
-MLX_DIR	= $(LIBS_DIR)/mlx
-MLX		= $(MLX_DIR)/libmlx.a
-MLX_INC		= -I $(MLX_DIR)
-MLX_ADD		= -L $(MLX_DIR) -lmlx -lXext -lX11
-
-$(MLX_DIR):
-	@mkdir -p $(dir $@)
-	@git clone https://github.com/42-joaorodrigues/compiled_mlx.git $@ > /dev/null 2>&1 || true
-	@make .progress ACTION="Downloading" OBJECT="mlx" --no-print-directory 
-
-$(MLX): $(MLX_DIR)
-
-rm_MLX:
-	@rm -rf $(MLX_DIR)
-
-#──────────────────────────────────Libft──────────────────────────────────────#
-
-LIBFT_DIR	= $(LIBS_DIR)/libft
-LIBFT		= $(LIBFT_DIR)/libft.a
-LFT_INC		= -I $(LIBFT_DIR)/inc
-LFT_ADD		= -L $(LIBFT_DIR) -l ft
-
-$(LIBFT_DIR):
-	@mkdir -p $(dir $@)
-	@git clone https://github.com/42-joaorodrigues/mylib.git $@ > /dev/null 2>&1 || true
-	@make .progress ACTION="Downloading" OBJECT="libft" --no-print-directory 
-
-$(LIBFT): $(LIBFT_DIR)
-	@make -C $(LIBFT_DIR) --no-print-directory
-
-rm_libft:
-	@rm -rf $(LIBFT_DIR)
-
-#────────────────────────────Mandatory Compilation────────────────────────────#
-
-SRC				= src/game/enemy.c \
-				  src/game/exit_animation.c \
+SRC				= src/game/enemy_bonus.c \
+				  src/game/enemy_collision_bonus.c \
+				  src/game/enemy_move_horizontal_bonus.c \
+				  src/game/enemy_move_vertical_bonus.c \
+				  src/game/map_exit_animation_bonus.c \
 				  src/game/player.c \
 				  src/input/keyhooks.c \
 				  src/parser/flood_fill.c \
 				  src/parser/parse_elements.c \
+				  src/parser/parse_enemy_bonus.c \
 				  src/parser/parse_map.c \
 				  src/parser/sprite_ids.c \
 				  src/parser/void_walls.c \
 				  src/render/render.c \
+				  src/render/render_counter_bonus.c \
+				  src/render/render_enemy_bonus.c \
+				  src/render/render_player.c \
 				  src/render/sprites.c \
 				  src/util/exit.c \
 				  src/util/mlx_util.c \
 				  src/util/util.c \
 				  src/main.c
-OBJ 			= $(SRC:%.c=$(O_DIR)/mandatory/%.o)
-INC				= -I inc $(MLX_INC) $(LFT_INC)
+OBJ 			= $(SRC:%.c=$(O_DIR)/%.o)
 
-OBJ_COUNT 		= $(words $(OBJ))
-
-# Compile .c to .o
-$(O_DIR)/mandatory/%.o: %.c
+$(O_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC);
-	@current=$$(cat $(COMPILED_COUNT) 2>/dev/null || echo 0); \
-	percent=$$(( ($$current * 100) / $(OBJ_COUNT) )); \
-	filled=$$(( $$percent / 10 )); \
-	printf "%-12.12s %-10.10s " "Compiling" "push_swap"; \
-	for j in $$(seq 1 $$filled); do printf "⣿"; done; \
-	for j in $$(seq $$filled 9); do printf "⣀"; done; \
-	printf " $$percent%%\r"; \
-	next=$$(( $$current + 1 )); \
-	echo $$next > $(COMPILED_COUNT)
+	@$(CC) $(CFLAGS) -c $< -o $@ -Iinc -Imlx -Ilibft/inc
 
-# Compile Push_Swap
-# $(NAME): $(HEADER) $(MLX) $(LIBFT) $(OBJ)
 $(NAME): $(HEADER) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $@ $(MLX_ADD) $(LFT_ADD)
-	@make .success ACTION="Compiling" OBJECT="$(NAME)" --no-print-directory
-	@rm -f $(COMPILED_COUNT)
+#	@make -C libft --no-print-directory > /dev/null 2>&1
+#	@echo "Libft compiled successfully"
+#	@make -C mlx --no-print-directory > /dev/null 2>&1
+#	@echo "Mlx compiled successfully"
+	@$(CC) $(CFLAGS) $(OBJ) -o $@ -Llibft -lft -Lmlx -lmlx -lXext -lX11
+	@echo "So_Long compiled successfully"
 
-#────────────────────────────────Bonus Compilation────────────────────────────#
-
-B_SRC			= 
-B_OBJ			= $(B_SRC:%.c=$(O_DIR)/bonus/%.o)
-B_INC			= -I inc $(LFT_INC)
-
-BONUS_OBJ_COUNT = $(words $(B_OBJ))
-
-# Compile .c to .o
-$(O_DIR)/bonus/%.o: %.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(B_INC);
-	@current=$$(cat $(COMPILED_COUNT) 2>/dev/null || echo 0); \
-	percent=$$(( ($$current * 100) / $(BONUS_OBJ_COUNT) )); \
-	filled=$$(( $$percent / 10 )); \
-	printf "%-12.12s %-10.10s " "Compiling" "checker"; \
-	for j in $$(seq 1 $$filled); do printf "⣿"; done; \
-	for j in $$(seq $$filled 9); do printf "⣀"; done; \
-	printf " $$percent%%\r"; \
-	next=$$(( $$current + 1 )); \
-	echo $$next > $(COMPILED_COUNT)
-
-# Compile Bonus
-bonus: $(HEADER) $(LIBFT) $(B_OBJ)
-	@$(CC) $(CFLAGS) $(B_OBJ) -o $@ $(LFT_ADD)
-	@make .success ACTION="Compiling" OBJECT="$(CHECKER)" --no-print-directory
-	@rm -f $(COMPILED_COUNT)
-
-#────────────────────────────────Cleaning Commands────────────────────────────#
+bonus: $(NAME)
 
 clean:
 	@rm -rf $(O_DIR)
-	@make .progress ACTION="Cleaning" OBJECT="$(NAME)" --no-print-directory
+	@echo "So_Long objects removed successfully"
 
-fclean:
-	@rm -rf $(O_DIR)
+fclean: clean
 	@rm -rf $(NAME)
-	@make .progress ACTION="Cleaning" OBJECT="$(NAME)" --no-print-directory
+	@echo "So Long executable removed successfully"
+#	@make -C libft fclean --no-print-directory > /dev/null 2>&1
+#	@echo "Libft objects & executable removed successfully"
+#	@make -C mlx clean --no-print-directory > /dev/null 2>&1
+#	@echo "Mlx objects & executable removed successfully"
 
 re: fclean all
-
-#─────────────────────────────────Animation Rules────────────────────────────#
 
 $(HEADER):
 	@mkdir -p $(dir $@)
@@ -154,30 +76,5 @@ $(HEADER):
 	@printf "╔═╗┌─┐  ╦  ┌─┐┌┐┌┌─┐\n"
 	@printf "╚═╗│ │  ║  │ │││││ ┬\n"
 	@printf "╚═╝└─┘  ╩═╝└─┘┘└┘└─┘\n\n"
-
-BAR_SIZE ?= 10
-
-.progress:
-	@bar_size=$(BAR_SIZE); \
-	increment=$$(( 100 / $$bar_size )); \
-	filled=0; \
-	for i in $$(seq 1 $$(( $$bar_size - 1 ))); do \
-		percent=$$(( $$i * $$increment )); \
-		printf "%-12.12s %-10.10s " $(ACTION) $(OBJECT); \
-		for j in $$(seq 1 $$filled); do printf "⣿"; done; \
-		for j in $$(seq $$filled $$bar_size); do printf "⣀"; done; \
-		printf " $$percent%%\r"; \
-		sleep 0.05; \
-		filled=$$i; \
-	done; \
-	make .success ACTION=$(ACTION) OBJECT=$(OBJECT) --no-print-directory
-
-.success:
-	@printf "%-12.12s %-10.10s " $(ACTION) $(OBJECT); \
-	bar_size=$(BAR_SIZE); \
-	for j in $$(seq 1 $$bar_size); do printf "⣿"; done; \
-	printf " 100%%\n"
-
-#────────────────────────────────Phony Targets───────────────────────────────#
 
 .PHONY: all bonus clean fclean re

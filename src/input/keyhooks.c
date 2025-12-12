@@ -6,13 +6,13 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:14:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/05 00:35:52 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:51:54 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "lft_print.h"
 #include "mlx.h"
+#include "so_long.h"
 #include <X11/X.h>
 #include <stdlib.h>
 

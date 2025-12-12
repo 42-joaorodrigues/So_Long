@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_util_int.h                                     :+:      :+:    :+:   */
+/*   enemy_int_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 20:27:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 16:45:45 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/12/12 16:38:51 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/12/12 17:19:26 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_UTIL_INT_H
-# define MLX_UTIL_INT_H
+#ifndef ENEMY_INT_BONUS_H
+# define ENEMY_INT_BONUS_H
 
-# include "mlx.h"
 # include "so_long.h"
 
-typedef struct s_blend
-{
-	char	*img;
-	char	*bg;
-	char	*fg;
-	int		bpp;
-}			t_blend;
+void	move_enemy_horizontal(t_game *game, t_enemy *enemy);
+void	move_enemy_vertical(t_game *game, t_enemy *enemy);
+int		should_bounce(t_game *game, int x, int y);
 
 #endif

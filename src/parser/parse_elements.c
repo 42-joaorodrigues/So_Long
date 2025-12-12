@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:15:41 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 14:48:56 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:48:21 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,6 @@ void	ft_init_map(t_game *game, t_counts *counts)
 	game->enemies_count = 0;
 	counts->players_count = 0;
 	counts->exits_count = 0;
-}
-
-static void	handle_enemy(t_game *game, int x, int y, char *c)
-{
-	if (game->enemies_count >= 10)
-		ft_free_exit(game, E_MANY_ENEMIES);
-	game->enemies[game->enemies_count].type = (*c == 'V' || *c == 'v');
-	game->enemies[game->enemies_count].x = x;
-	game->enemies[game->enemies_count].y = y;
-	if (*c == 'H')
-	{
-		game->enemies[game->enemies_count].direction = RIGHT;
-		if (x > game->map.width / 2)
-			game->enemies[game->enemies_count].direction = LEFT;
-	}
-	else
-	{
-		game->enemies[game->enemies_count].direction = DOWN;
-		if (y > game->map.height / 2)
-			game->enemies[game->enemies_count].direction = UP;
-	}
-	game->enemies[game->enemies_count].speed = ENEMY_SPEED;
-	if (*c == 'h' || *c == 'v')
-		game->enemies[game->enemies_count].speed = ENEMY_SPEED / 2;
-	game->enemies_count++;
-	*c = '0';
 }
 
 static void	handle_character(t_game *game, int x, int y, t_counts *counts)
@@ -64,7 +38,7 @@ static void	handle_character(t_game *game, int x, int y, t_counts *counts)
 		*c = '0';
 	}
 	else if (*c == 'H' || *c == 'h' || *c == 'V' || *c == 'v')
-		handle_enemy(game, x, y, c);
+		parse_enemy(game, x, y, c);
 	else if (*c == 'C')
 		game->map.collectible_count++;
 	else if (*c == 'E')
