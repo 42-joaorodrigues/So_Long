@@ -39,8 +39,8 @@ $(O_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@ -Iinc -Imlx -Ilibft/inc
 
 $(NAME): $(HEADER) $(OBJ)
-#	@make -C libft --no-print-directory > /dev/null 2>&1
-#	@echo "Libft compiled successfully"
+	@make -C libft --no-print-directory > /dev/null 2>&1
+	@echo "Libft compiled successfully"
 #	@make -C mlx --no-print-directory > /dev/null 2>&1
 #	@echo "Mlx compiled successfully"
 	@$(CC) $(CFLAGS) $(OBJ) -o $@ -Llibft -lft -Lmlx -lmlx -lXext -lX11
@@ -52,11 +52,12 @@ clean:
 	@rm -rf $(O_DIR)
 	@echo "So_Long objects removed successfully"
 
-fclean: clean
+fclean:
+	@rm -rf $(O_DIR)
 	@rm -rf $(NAME)
-	@echo "So Long executable removed successfully"
-#	@make -C libft fclean --no-print-directory > /dev/null 2>&1
-#	@echo "Libft objects & executable removed successfully"
+	@echo "So Long objects & executable removed successfully"
+	@make -C libft fclean --no-print-directory > /dev/null 2>&1
+	@echo "Libft objects & executable removed successfully"
 #	@make -C mlx clean --no-print-directory > /dev/null 2>&1
 #	@echo "Mlx objects & executable removed successfully"
 
