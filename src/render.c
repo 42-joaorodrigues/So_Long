@@ -6,13 +6,14 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:53:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/11 17:10:49 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 12:49:43 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "so_long.h"
 #include "lft_conversion.h"
+#include "lft_string.h"
 #include <stdlib.h>
 
 void	render_element_at(t_game *game, int x, int y)
@@ -69,13 +70,14 @@ void	render_counter(t_game *game)
 
 	if (game->player.move_count > 999)
 		return ;
-	counter_x = (game->map.width - 2) * TILE_SIZE;
+	counter_x = (game->map.width - 3) * TILE_SIZE;
 	counter_y = 0;
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites[VOID], counter_x, counter_y);
 	mlx_put_image_to_window(game->mlx, game->win, game->sprites[VOID], counter_x + TILE_SIZE, counter_y);
-	mlx_string_put(game->mlx, game->win, counter_x + 20, counter_y + 36, 0xFF6DC2CA, "Moves:");
+	mlx_put_image_to_window(game->mlx, game->win, game->sprites[VOID], counter_x + TILE_SIZE * 2, counter_y);
 	move_count_str = ft_itoa(game->player.move_count);
-	mlx_string_put(game->mlx, game->win, counter_x + 85, counter_y + 36, 0xFF6DC2CA, move_count_str);
+	move_count_str = ft_strjoin_free("Moves: ", move_count_str, 2);
+	mlx_string_put(game->mlx, game->win, counter_x + 30, counter_y + 40, 0xFFDEEED6, move_count_str);
 	free(move_count_str);
 }
 
@@ -96,6 +98,6 @@ void	render_all(t_game *game)
 	i = -1;
 	while (++i < game->map.width)
 		mlx_put_image_to_window(game->mlx, game->win, game->sprites[VOID], i * TILE_SIZE, 0);
-	mlx_set_font(game->mlx, game->win, "-*-*-bold-r-*-*-16-*-*-*-*-*-*-*");
+	mlx_set_font(game->mlx, game->win, "-*-*-bold-r-*-*-20-*-*-*-*-*-*-*");
 	render_counter(game);
 }
