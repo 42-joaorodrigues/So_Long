@@ -1,4 +1,5 @@
-libs/
+libft/obj
+libft/libft.a
 obj/
 so_long
 vgcore.*
