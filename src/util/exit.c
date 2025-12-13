@@ -6,15 +6,15 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:01:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 18:13:00 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/12 20:56:43 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "lft_memory.h"
+#include "lft_print.h"
 #include "lft_string.h"
 #include "mlx.h"
-#include "lft_print.h"
+#include "so_long.h"
 #include <unistd.h>
 
 static void	ft_puterr(const char *error)
@@ -28,7 +28,8 @@ static void	ft_print_error2(const int err_code)
 	if (err_code == E_MAP_NOT_SURROUNDED)
 		ft_puterr("Map is not surrounded by walls\n");
 	else if (err_code == E_INVALID_CHARACTER)
-		ft_puterr("Only ('0', '1', 'P', 'C', 'E' allowed\n");
+		ft_puterr("Only ('0', '1', 'P', 'C', 'E', 'V', 'v',"
+			"'H' or 'h' allowed\n");
 	else if (err_code == E_MULTIPLE_STARTS)
 		ft_puterr("Only one player start ('P') allowed\n");
 	else if (err_code == E_MULTIPLE_EXITS)

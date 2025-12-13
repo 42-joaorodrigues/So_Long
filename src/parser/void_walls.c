@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:31:39 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/04 22:33:43 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/13 16:59:39 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_sides(t_game *game, int x, int y)
 		left = game->map.tiles[y][x - 1].value;
 	right = '1';
 	if (x < game->map.width - 1)
-		left = game->map.tiles[y][x + 1].value;
+		right = game->map.tiles[y][x + 1].value;
 	down = '1';
 	if (y < game->map.height - 1)
 		down = game->map.tiles[y + 1][x].value;
@@ -52,7 +52,7 @@ static int	check_diagonals(t_game *game, int x, int y)
 		up_right = game->map.tiles[y - 1][x + 1].value;
 	down_left = '1';
 	if (y < game->map.height - 1 && x > 0)
-		up_right = game->map.tiles[y + 1][x - 1].value;
+		down_left = game->map.tiles[y + 1][x - 1].value;
 	down_right = '1';
 	if (y < game->map.height - 1 && x < game->map.width - 1)
 		down_right = game->map.tiles[y + 1][x + 1].value;

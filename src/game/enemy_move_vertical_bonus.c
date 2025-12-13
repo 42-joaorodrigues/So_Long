@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:40:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 17:20:16 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/13 17:03:09 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	move_enemy_vertical(t_game *game, t_enemy *enemy)
 	if (enemy->direction == DOWN)
 		enemy->sprite_id = ENEMY_WALK_DOWN_0 + enemy->step;
 	else
-		enemy->sprite_id = ENEMY_WALK_UP_1 + enemy->step;
+		enemy->sprite_id = ENEMY_WALK_UP_0 + enemy->step;
 }
