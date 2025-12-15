@@ -1,167 +1,133 @@
-################################################################################
-#                              libft by joao-alm                               #
-#                                 Version 1.1                                  #
-################################################################################
+# Libft
+# by joao-alm
 
-#────────────────────────────────────Compilation──────────────────────────────#
-
-NAME			= libft.a
-LIBC			= ar rcs
-CC				= cc
-CFLAGS			= -Wall -Werror -Wextra
-RM				= rm -rf
-O_DIR			= obj
+NAME	= libft.a
+LIBCC	= ar rcs
+CC		= cc
+CFLAGS	= -Wall -Werror -Wextra
+O_DIR	= .obj
+HEADER	= $(O_DIR)/.header
 
 all: $(NAME)
 
-#──────────────────────────────────────Sources────────────────────────────────#
-
 # Char Files
-SRC_CHAR		= ft_isalnum.c \
-				  ft_isalpha.c \
-				  ft_isascii.c \
-				  ft_isdigit.c \
-				  ft_isprint.c
-SRC_CHAR		:= $(addprefix char/, $(SRC_CHAR))
+SRC_CHAR		= src/char/ft_isalnum.c \
+				  src/char/ft_isalpha.c \
+				  src/char/ft_isascii.c \
+				  src/char/ft_isdigit.c \
+				  src/char/ft_isprint.c
 
 # Conversion Files
-SRC_CONV		= atoll_valid.c \
-				  ft_atoi.c \
-				  ft_itoa.c \
-				  ft_tolower.c \
-				  ft_toupper.c
-SRC_CONV		:= $(addprefix conversion/, $(SRC_CONV))
+SRC_CONV		= src/conversion/atoll_valid.c \
+				  src/conversion/ft_atoi.c \
+				  src/conversion/ft_itoa.c \
+				  src/conversion/ft_tolower.c \
+				  src/conversion/ft_toupper.c
 
 # Error Files
-SRC_ERROR		= error.c
-SRC_ERROR		:= $(addprefix error/, $(SRC_ERROR))
+SRC_ERROR		= src/error/error.c
 
 # GetNextLine Files
-SRC_GNL			= get_next_line.c \
-				  get_next_line_utils.c \
-				  gnl_free_buffer.c
-SRC_GNL			:= $(addprefix gnl/, $(SRC_GNL))
+SRC_GNL			= src/gnl/get_next_line.c \
+				  src/gnl/get_next_line_utils.c \
+				  src/gnl/gnl_free_buffer.c
 
 # List Files
-SRC_LIST		= ft_lstadd_back_bonus.c \
-				  ft_lstadd_front_bonus.c \
-				  ft_lstclear_bonus.c \
-				  ft_lstdelone_bonus.c \
-				  ft_lstiter_bonus.c \
-				  ft_lstlast_bonus.c \
-				  ft_lstmap_bonus.c \
-				  ft_lstnew_bonus.c \
-				  ft_lstsize_bonus.c \
-				  lstdel_safely.c \
-				  lstdetach.c \
-				  lstdup.c \
-				  lstget_int.c \
-				  lstnew_int.c
-SRC_LIST		:= $(addprefix list/, $(SRC_LIST))
+SRC_LIST		= src/list/ft_lstadd_back_bonus.c \
+				  src/list/ft_lstadd_front_bonus.c \
+				  src/list/ft_lstclear_bonus.c \
+				  src/list/ft_lstdelone_bonus.c \
+				  src/list/ft_lstiter_bonus.c \
+				  src/list/ft_lstlast_bonus.c \
+				  src/list/ft_lstmap_bonus.c \
+				  src/list/ft_lstnew_bonus.c \
+				  src/list/ft_lstsize_bonus.c \
+				  src/list/lstdel_safely.c \
+				  src/list/lstdetach.c \
+				  src/list/lstdup.c \
+				  src/list/lstget_int.c \
+				  src/list/lstnew_int.c
 
 # Memory Files
-SRC_MEM			= free_matrix.c \
-				  free_partial_matrix.c \
-				  ft_bzero.c \
-				  ft_calloc.c \
-				  ft_memchr.c \
-				  ft_memcmp.c \
-				  ft_memcpy.c \
-				  ft_memmove.c \
-				  ft_memset.c \
-				  realloc.c \
-				  sort_tab.c
-SRC_MEM			:= $(addprefix memory/, $(SRC_MEM))
+SRC_MEM			= src/memory/free_matrix.c \
+				  src/memory/free_partial_matrix.c \
+				  src/memory/ft_bzero.c \
+				  src/memory/ft_calloc.c \
+				  src/memory/ft_memchr.c \
+				  src/memory/ft_memcmp.c \
+				  src/memory/ft_memcpy.c \
+				  src/memory/ft_memmove.c \
+				  src/memory/ft_memset.c \
+				  src/memory/realloc.c \
+				  src/memory/sort_tab.c
 
 # Print Files
-SRC_PRINT		= ft_printf.c \
-				  ft_putchar_fd.c \
-				  ft_putendl_fd.c \
-				  ft_putnbr_fd.c \
-				  ft_putstr_fd.c \
-				  put_characters.c \
-				  put_numbers.c
-SRC_PRINT		:= $(addprefix print/, $(SRC_PRINT))
+SRC_PRINT		= src/print/ft_printf.c \
+				  src/print/ft_putchar_fd.c \
+				  src/print/ft_putendl_fd.c \
+				  src/print/ft_putnbr_fd.c \
+				  src/print/ft_putstr_fd.c \
+				  src/print/put_characters.c \
+				  src/print/put_numbers.c
 
 # String Files
-SRC_STRING		= ft_split.c \
-				  ft_strchr.c \
-				  ft_strcmp.c \
-				  ft_strdup.c \
-				  ft_striteri.c \
-				  ft_strjoin.c \
-				  ft_strlcat.c \
-				  ft_strlcpy.c \
-				  ft_strlen.c \
-				  ft_strmapi.c \
-				  ft_strncmp.c \
-				  ft_strnstr.c \
-				  ft_strrchr.c \
-				  ft_strtrim.c \
-				  ft_substr.c \
-				  intlen.c \
-				  isempty.c \
-				  strarrcount.c \
-				  strarrdup.c \
-				  strcpy.c \
-				  ft_strcat.c \
-				  strjoin_free.c \
-				  strndup.c
-SRC_STRING		:= $(addprefix string/, $(SRC_STRING))
+SRC_STRING		= src/string/ft_split.c \
+				  src/string/ft_strchr.c \
+				  src/string/ft_strcmp.c \
+				  src/string/ft_strdup.c \
+				  src/string/ft_striteri.c \
+				  src/string/ft_strjoin.c \
+				  src/string/ft_strlcat.c \
+				  src/string/ft_strlcpy.c \
+				  src/string/ft_strlen.c \
+				  src/string/ft_strmapi.c \
+				  src/string/ft_strncmp.c \
+				  src/string/ft_strnstr.c \
+				  src/string/ft_strrchr.c \
+				  src/string/ft_strtrim.c \
+				  src/string/ft_substr.c \
+				  src/string/intlen.c \
+				  src/string/isempty.c \
+				  src/string/strarrcount.c \
+				  src/string/strarrdup.c \
+				  src/string/strcpy.c \
+				  src/string/ft_strcat.c \
+				  src/string/strjoin_free.c \
+				  src/string/strndup.c
 
 # All Sources
 SRC				= $(SRC_CHAR) $(SRC_CONV) $(SRC_GNL) $(SRC_LIST) \
 				  $(SRC_MEM) $(SRC_PRINT) $(SRC_STRING) $(SRC_ERROR)
-SRC				:= $(addprefix src/, $(SRC))
-INC				= -I inc
 OBJ				= $(SRC:%.c=$(O_DIR)/%.o)
-
-#───────────────────────────────Animation Variables───────────────────────────#
-
-YELLOW	= \033[38;2;255;248;147m# FFF893
-PINK	= \033[38;2;231;133;190m# E785BE
-GREEN	= \033[38;2;129;223;164m# 81DFA4
-RESET	= \033[0m
-
-COMPILED_COUNT_FILE = $(O_DIR)/.compiled_count
-
-#───────────────────────────────Compilation Commands──────────────────────────#
-
-TOTAL_OBJ = $(words $(OBJ))
 
 $(O_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@current=$$(cat $(COMPILED_COUNT_FILE) 2>/dev/null || echo 0); \
-	percent=$$(( ($$current * 100) / $(TOTAL_OBJ) )); \
-	filled=$$(( $$percent / 10 )); \
-	printf "%-12.12s %-10.10s " "Compiling" "libft"; \
-	for j in $$(seq 1 $$filled); do printf "⣿"; done; \
-	for j in $$(seq $$filled 9); do printf "⣀"; done; \
-	printf " $$percent%%\r"; \
-	$(CC) $(CFLAGS) -c $< -o $@ $(INC); \
-	next=$$(( $$current + 1 )); \
-	echo $$next > $(COMPILED_COUNT_FILE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -Iinc
 
-$(NAME): $(OBJ)
-	@$(LIBC) $@ $(OBJ)
-	@printf "%-12.12s %-10.10s $(GREEN)⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 100%%$(RESET)\n" "Compiling" "libft"
-	@rm -rf $(COMPILED_COUNT_FILE)
-
-#─────────────────────────────────Cleaning Commands───────────────────────────#
+$(NAME): $(HEADER) $(OBJ)
+	@$(LIBCC) $@ $(OBJ)
+	@echo "Libft compiled successfully"
 
 clean:
-	@printf "%-12.12s %-10.10s ⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀ 10%%\r" "Cleaning" "libft"
 	@rm -rf $(O_DIR)
-	@printf "%-12.12s %-10.10s $(GREEN)⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 100%%\n$(RESET)" "Cleaning" "libft"
+	@echo "Libft objects removed successfully"
 
 fclean:
-	@printf "%-12.12s %-10.10s ⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀ 10%%\r" "Cleaning" "libft"
 	@rm -rf $(O_DIR)
 	@rm -rf $(NAME)
-	@printf "%-12.12s %-10.10s $(GREEN)⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 100%%\n$(RESET)" "Cleaning" "libft"
+	@echo "Libft objects & executable removed successfully"
 
 re: fclean all
 
-#────────────────────────────────Phony Targets───────────────────────────────#
+$(HEADER):
+	@mkdir -p $(dir $@)
+	@touch $@
+	@printf "\n"
+	@printf "█████████████████████████████\n"
+	@printf "        ██  █▓███  ██  █▓███ \n"
+	@printf "joao-alm  █████      █████   \n"
+	@printf "╦  ┬┌┐ ┌─┐┌┬┐\n"
+	@printf "║  │├┴┐├┤  │ \n"
+	@printf "╩═╝┴└─┘└   ┴ \n\n"
 
 .PHONY: all clean fclean re

@@ -6,20 +6,21 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:59:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 16:44:57 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/13 17:16:17 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "directions_util.h"
+# include "direction_util.h"
 # include "error_codes.h"
 # include "key_util.h"
 # include "sprites.h"
 # include <stdio.h> // degub
 
-# define ENEMY_SPEED 300
+# define TILE_SIZE 64
+# define ENEMY_SPEED 350
 
 typedef struct s_tile
 {
@@ -71,6 +72,7 @@ typedef struct s_game
 	t_enemy		enemies[10];
 	int			enemies_count;
 	void		**sprites;
+	int			n_sprites;
 	t_keys		key_pressed;
 	long		last_input_time;
 	int			exit_animating;

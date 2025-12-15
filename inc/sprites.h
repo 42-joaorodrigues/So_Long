@@ -6,14 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:09:36 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 14:15:54 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/13 17:07:52 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPRITES_H
 # define SPRITES_H
-
-# define TILE_SIZE 64
 
 enum	e_sprites
 {

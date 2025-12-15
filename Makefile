@@ -4,8 +4,7 @@
 NAME   		= so_long
 CC     		= cc
 CFLAGS 		= -Wall -Werror -Wextra -Ofast -march=native -Wno-incompatible-pointer-types
-LIBS_DIR	= libs
-O_DIR		= obj
+O_DIR		= .obj
 HEADER		= $(O_DIR)/.header
 
 all: $(NAME)
@@ -34,11 +33,19 @@ SRC				= src/game/enemy_bonus.c \
 				  src/main.c
 OBJ 			= $(SRC:%.c=$(O_DIR)/%.o)
 
+libft:
+	@git clone https://github.com/42-joaorodrigues/mylib.git libft > /dev/null 2>&1
+	@echo "Libft downloaded successfully"
+
+mlx:
+	@git clone https://github.com/42-joaorodrigues/compiled_mlx.git mlx > /dev/null 2>&1
+	@echo "Mlx downloaded successfully"
+
 $(O_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@ -Iinc -Imlx -Ilibft/inc
 
-$(NAME): $(HEADER) $(OBJ)
+$(NAME): $(HEADER) libft mlx $(OBJ)
 	@make -C libft --no-print-directory > /dev/null 2>&1
 	@echo "Libft compiled successfully"
 #	@make -C mlx --no-print-directory > /dev/null 2>&1
@@ -52,7 +59,7 @@ clean:
 	@rm -rf $(O_DIR)
 	@echo "So_Long objects removed successfully"
 
-fclean:
+fclean: libft mlx
 	@rm -rf $(O_DIR)
 	@rm -rf $(NAME)
 	@echo "So Long objects & executable removed successfully"

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:33:58 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/12 13:32:07 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/13 17:25:16 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static void	init(t_game *game)
 
 static int	ft_loop_hook(t_game *game)
 {
-	long		current_time;
-
 	update_exit_animation(game);
 	update_enemies(game);
 	if (check_enemy_collision(game))
@@ -37,10 +35,7 @@ static int	ft_loop_hook(t_game *game)
 		ft_printf("\r\033[KMoves: %d\nYou died!\n", game->player.move_count);
 		ft_free_exit(game, 0);
 	}
-	current_time = get_time_ms();
-	if (current_time - game->last_input_time >= 120)
-		key_loop(game, current_time);
-	if (current_time - game->last_input_time >= 150)
+	if (get_time_ms() - game->last_input_time >= 170)
 	{
 		if (!game->player.is_idle)
 		{

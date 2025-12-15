@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:01:30 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/25 09:31:10 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/15 17:15:16 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ static int	ft_static_strlen(const char *str)
 
 static void	ft_puterror(const char *err_str)
 {
-	write(2, ERROR_PINK, ft_static_strlen(ERROR_PINK));
 	write(2, "Error: ", 7);
-	write(2, ERROR_RESET, ft_static_strlen(ERROR_RESET));
 	write(2, err_str, ft_static_strlen(err_str));
 	write(2, "\n", 1);
 }
