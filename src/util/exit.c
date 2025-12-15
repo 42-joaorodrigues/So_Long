@@ -28,8 +28,8 @@ static void	ft_print_error2(const int err_code)
 	if (err_code == E_MAP_NOT_SURROUNDED)
 		ft_puterr("Map is not surrounded by walls\n");
 	else if (err_code == E_INVALID_CHARACTER)
-		ft_puterr("Only ('0', '1', 'P', 'C', 'E', 'V', 'v',"
-			"'H' or 'h' allowed\n");
+		ft_puterr("Only '0', '1', 'P', 'C', 'E', 'V', 'v',"
+			" 'H' or 'h' allowed\n");
 	else if (err_code == E_MULTIPLE_STARTS)
 		ft_puterr("Only one player start ('P') allowed\n");
 	else if (err_code == E_MULTIPLE_EXITS)

@@ -27,7 +27,7 @@ char	**ft_duplicate_map(t_map map)
 	{
 		copy[y] = (char *)malloc((map.width + 1) * sizeof(char));
 		if (!copy[y])
-			return (ft_free_partial_matrix(copy, --y), NULL);
+			return (ft_free_partial_matrix((void **)copy, --y), NULL);
 		x = -1;
 		while (++x < map.width)
 			copy[y][x] = map.tiles[y][x].value;
@@ -74,7 +74,7 @@ void	flood_fill(t_game *game)
 	flood_fill.exit_found = 0;
 	map_valid = r_flood_fill(map_dup, game->player.x, game->player.y,
 			&flood_fill);
-	ft_free_matrix(map_dup);
+	ft_free_matrix((void **)map_dup);
 	if (!map_valid)
 		ft_free_exit(game, E_OBSTRUCTED_PATH);
 }

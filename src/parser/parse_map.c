@@ -25,14 +25,14 @@ static int	parse_map_line(t_map *map, int line_idx, char *map_line)
 
 	if ((int)ft_strlen(map_line) != map->width)
 	{
-		ft_free_partial_matrix(map->tiles, --line_idx);
+		ft_free_partial_matrix((void **)map->tiles, --line_idx);
 		ft_print_error(E_MAP_NOT_RECTANGLE);
 		return (-1);
 	}
 	map->tiles[line_idx] = (t_tile *)malloc(map->width * sizeof(t_tile));
 	if (!map->tiles[line_idx])
 	{
-		ft_free_partial_matrix(map->tiles, --line_idx);
+		ft_free_partial_matrix((void **)map->tiles, --line_idx);
 		ft_print_error(E_MEMORY_ALLOC);
 		return (-1);
 	}
@@ -68,7 +68,7 @@ static void	load_map(t_list *map_list, t_map *map)
 		}
 		current = current->next;
 	}
-	ft_lstclear(&map_list, NULL);
+	ft_lstclear(&map_list, free);
 }
 
 static t_list	*read_map(const char *filename)
